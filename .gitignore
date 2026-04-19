@@ -1,0 +1,17 @@
+# Generated data files — run generate.js to recreate
+data/orders.json
+data/customers.json
+data/financials.json
+data/kpis.json
+data/tax.json
+
+# Keep the data folder structure in git
+!data/.gitkeep
+
+# Node
+node_modules/
+npm-debug.log
+
+# OS
+.DS_Store
+Thumbs.db

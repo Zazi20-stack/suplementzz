@@ -1,0 +1,2 @@
+# This file exists to keep the data/ folder tracked in git.
+# The JSON files are excluded via .gitignore — run generate.js to recreate them.
