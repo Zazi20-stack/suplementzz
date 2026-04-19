@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart — Supplementzz BV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--navy:#0a1628;--teal:#0f9b77;--teal-light:#e1f5ee;--off-white:#f7f8fa;--text-primary:#0a1628;--text-secondary:#4a5568;--text-muted:#718096;--border:rgba(10,22,40,0.1);--font:'DM Sans',sans-serif;--mono:'DM Mono',monospace}
+    body{font-family:var(--font);background:white;color:var(--text-primary);overflow-x:hidden}
+    .en{display:block}.nl{display:none}.lang-nl .en{display:none}.lang-nl .nl{display:block}
+    span.en{display:inline}span.nl{display:none}.lang-nl span.en{display:none}.lang-nl span.nl{display:inline}
+
+    .trust-bar{background:var(--off-white);border-bottom:0.5px solid var(--border);padding:0 2rem;height:44px;display:flex;align-items:center;justify-content:center}
+    .trust-items{display:flex;align-items:center;gap:2.5rem;max-width:1200px;width:100%;justify-content:center}
+    .trust-item{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;white-space:nowrap}
+    .trust-item svg{width:14px;height:14px;flex-shrink:0}.trust-divider{width:1px;height:16px;background:var(--border)}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-mark{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--navy)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .lang-switcher{display:flex;gap:2px;background:var(--off-white);border-radius:6px;padding:3px;border:0.5px solid var(--border)}
+    .lang-btn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;padding:4px 10px;border:none;cursor:pointer;border-radius:4px;background:transparent;color:var(--text-muted);transition:all .15s}
+    .lang-btn.active{background:white;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+    .breadcrumb{max-width:1200px;margin:0 auto;padding:1.25rem 2rem;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);font-family:var(--mono)}
+    .breadcrumb a{color:var(--text-muted);text-decoration:none}.breadcrumb a:hover{color:var(--navy)}.breadcrumb-sep{opacity:.4}
+
+    .cart-wrap{max-width:1200px;margin:0 auto;padding:2rem 2rem 5rem;display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:start}
+    .cart-title{font-size:1.75rem;font-weight:300;letter-spacing:-.02em;color:var(--navy);margin-bottom:2rem}
+
+    /* CART ITEMS */
+    .cart-items{display:flex;flex-direction:column;gap:1rem}
+    .cart-item{border:0.5px solid var(--border);border-radius:14px;padding:1.25rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center}
+    .item-img{width:64px;height:64px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+    .item-img.hair{background:linear-gradient(145deg,#e1f5ee,#9fe1cb)}
+    .item-img.male{background:linear-gradient(145deg,#e6f1fb,#b5d4f4)}
+    .item-img.female{background:linear-gradient(145deg,#fbeaf0,#f4c0d1)}
+    .item-name{font-size:15px;font-weight:500;color:var(--navy);margin-bottom:.25rem}
+    .item-plan{font-family:var(--mono);font-size:11px;color:var(--text-muted);margin-bottom:.75rem}
+    .item-qty{display:flex;align-items:center;gap:8px}
+    .qty-ctrl{display:flex;align-items:center;border:0.5px solid var(--border);border-radius:7px;overflow:hidden}
+    .qty-btn{width:30px;height:30px;border:none;background:var(--off-white);cursor:pointer;font-size:14px;color:var(--navy)}
+    .qty-btn:hover{background:#e8e8e8}
+    .qty-num{width:34px;text-align:center;font-family:var(--mono);font-size:13px;font-weight:500;color:var(--navy);border-left:0.5px solid var(--border);border-right:0.5px solid var(--border);height:30px;line-height:30px}
+    .item-remove{font-size:11px;color:var(--text-muted);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:2px;margin-left:8px}
+    .item-remove:hover{color:#cc3333}
+    .item-price{font-family:var(--mono);font-size:17px;font-weight:500;color:var(--navy);text-align:right;white-space:nowrap}
+    .item-per{font-size:11px;color:var(--text-muted);text-align:right}
+
+    /* PLAN SELECTOR IN CART */
+    .plan-select{font-family:var(--mono);font-size:11px;border:0.5px solid var(--border);border-radius:6px;padding:4px 8px;color:var(--navy);background:var(--off-white);cursor:pointer;margin-bottom:.75rem}
+
+    /* EMPTY CART */
+    .cart-empty{text-align:center;padding:4rem 2rem;border:0.5px solid var(--border);border-radius:14px}
+    .cart-empty-icon{font-size:48px;margin-bottom:1rem}
+    .cart-empty-title{font-size:18px;font-weight:400;color:var(--navy);margin-bottom:.5rem}
+    .cart-empty-sub{font-size:14px;font-weight:300;color:var(--text-muted);margin-bottom:1.5rem}
+    .btn-shop{font-size:13px;font-weight:500;padding:11px 24px;background:var(--navy);color:white;border:none;border-radius:9px;cursor:pointer;text-decoration:none;display:inline-block}
+    .btn-shop:hover{background:#1a3360}
+
+    /* ORDER SUMMARY */
+    .summary-box{border:0.5px solid var(--border);border-radius:16px;padding:1.75rem;position:sticky;top:80px}
+    .summary-title{font-size:15px;font-weight:500;color:var(--navy);margin-bottom:1.5rem}
+    .summary-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--text-secondary);margin-bottom:.875rem}
+    .summary-row.total{font-size:16px;font-weight:500;color:var(--navy);border-top:0.5px solid var(--border);padding-top:1rem;margin-top:.25rem}
+    .summary-row .label{font-weight:300}
+    .summary-row .value{font-family:var(--mono);font-weight:500}
+    .summary-row.total .value{font-size:18px}
+    .discount-row{background:var(--teal-light);border-radius:8px;padding:.625rem .875rem;display:flex;justify-content:space-between;font-size:12px;margin-bottom:1rem}
+    .discount-label{color:#0f6e56;font-weight:400}
+    .discount-value{color:#0f6e56;font-family:var(--mono);font-weight:500}
+    .coupon-row{display:flex;gap:8px;margin-bottom:1.25rem}
+    .coupon-input{flex:1;font-family:var(--mono);font-size:12px;border:0.5px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--navy);background:white;outline:none}
+    .coupon-input:focus{border-color:var(--navy)}
+    .coupon-input::placeholder{color:var(--text-muted)}
+    .coupon-btn{font-size:12px;font-weight:500;padding:9px 14px;background:var(--off-white);border:0.5px solid var(--border);border-radius:8px;cursor:pointer;color:var(--navy);transition:all .2s}
+    .coupon-btn:hover{background:var(--navy);color:white;border-color:var(--navy)}
+    .btn-checkout{width:100%;padding:16px;background:var(--navy);color:white;border:none;border-radius:12px;cursor:pointer;font-size:15px;font-weight:500;transition:background .2s,transform .15s;margin-bottom:10px}
+    .btn-checkout:hover{background:#1a3360;transform:translateY(-1px)}
+    .btn-continue{width:100%;padding:13px;background:transparent;color:var(--text-secondary);border:0.5px solid var(--border);border-radius:12px;cursor:pointer;font-size:14px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:border-color .2s,color .2s}
+    .btn-continue:hover{border-color:var(--navy);color:var(--navy)}
+    .summary-trust{display:flex;flex-direction:column;gap:6px;margin-top:1.25rem;padding-top:1.25rem;border-top:0.5px solid var(--border)}
+    .summary-trust-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted)}
+    .summary-trust-item svg{width:13px;height:13px;flex-shrink:0}
+
+    /* UPSELL */
+    .upsell-section{margin-top:2.5rem}
+    .upsell-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:1rem;font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase}
+    .upsell-cards{display:flex;flex-direction:column;gap:.75rem}
+    .upsell-card{border:0.5px solid var(--border);border-radius:12px;padding:1rem;display:grid;grid-template-columns:40px 1fr auto;gap:.875rem;align-items:center}
+    .upsell-img{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+    .upsell-img.hair{background:linear-gradient(145deg,#e1f5ee,#9fe1cb)}
+    .upsell-img.male{background:linear-gradient(145deg,#e6f1fb,#b5d4f4)}
+    .upsell-img.female{background:linear-gradient(145deg,#fbeaf0,#f4c0d1)}
+    .upsell-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:2px}
+    .upsell-price{font-family:var(--mono);font-size:11px;color:var(--text-muted)}
+    .upsell-add{font-size:11px;font-weight:500;padding:6px 12px;background:var(--navy);color:white;border:none;border-radius:7px;cursor:pointer;white-space:nowrap;transition:background .2s}
+    .upsell-add:hover{background:#1a3360}
+
+    .footer-wrap{border-top:0.5px solid var(--border)}
+    footer{max-width:1200px;margin:0 auto;padding:2rem;display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text-muted)}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:12px;color:var(--text-muted);text-decoration:none}
+    .footer-copy{font-size:12px;color:var(--text-muted)}
+    .cookie-banner{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 3rem);max-width:900px;background:white;border:0.5px solid var(--border);border-radius:16px;padding:1.25rem 1.75rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;z-index:999;box-shadow:0 4px 24px rgba(10,22,40,0.08);transition:opacity .3s,transform .3s}
+    .cookie-banner.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+    .cookie-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .cookie-body{font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.6}
+    .cookie-actions{display:flex;gap:8px;flex-shrink:0}
+    .cookie-accept{font-size:12px;font-weight:500;padding:9px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer}
+    .cookie-decline{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:0.5px solid var(--border);border-radius:8px;cursor:pointer}
+    .cookie-settings{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:none;cursor:pointer;text-decoration:underline}
+    @media(max-width:900px){.cart-wrap{grid-template-columns:1fr}.nav-links{display:none}.summary-box{position:static}footer{flex-direction:column;gap:1rem;text-align:center}}
+  </style>
+</head>
+<body>
+<div id="site" class="lang-en">
+
+  <div class="trust-bar"><div class="trust-items">
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#0f9b77" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">90-day money-back guarantee</span><span class="nl">90 dagen niet-goed-geld-terug</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><rect x="2" y="4" width="10" height="8" rx="1.5" stroke="#718096" stroke-width="1.1"/><path d="M5 4V3a2 2 0 014 0v1" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/></svg><span class="en">Secure &amp; encrypted payment</span><span class="nl">Veilige &amp; versleutelde betaling</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v6l3 2" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/><circle cx="7" cy="7" r="6" stroke="#718096" stroke-width="1.1"/></svg><span class="en">Free shipping from €75</span><span class="nl">Gratis verzending vanaf €75</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M1 10l3-6 3 4 2-2 4 4" stroke="#718096" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Cancel anytime</span><span class="nl">Altijd opzegbaar</span></div>
+  </div></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.2"/><path d="M8 4v8M5 6.5h6M5 9.5h6" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div>SUPPLEMENTZZ</a>
+    <ul class="nav-links">
+      <li><a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a></li>
+      <li><a href="index.html#science"><span class="en">Science</span><span class="nl">Wetenschap</span></a></li>
+      <li><a href="#"><span class="en">About</span><span class="nl">Over ons</span></a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switcher"><button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button><button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button></div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a><span class="breadcrumb-sep">›</span><span style="color:var(--navy)"><span class="en">Cart</span><span class="nl">Winkelwagen</span></span></div>
+
+  <div class="cart-wrap">
+    <!-- LEFT: CART ITEMS -->
+    <div>
+      <h1 class="cart-title en">Your cart (<span id="itemCount">2</span>)</h1>
+      <h1 class="cart-title nl">Uw winkelwagen (<span id="itemCount2">2</span>)</h1>
+
+      <div class="cart-items" id="cartItems">
+
+        <!-- ITEM 1: HairMax -->
+        <div class="cart-item" id="item-hm">
+          <div class="item-img hair">🌿</div>
+          <div>
+            <div class="item-name">HairMax Formula</div>
+            <select class="plan-select" onchange="updatePlan('hm', this.value)">
+              <option value="49"><span class="en">1 month — €49/mo</span></option>
+              <option value="44"><span class="en">3 months — €44/mo</span></option>
+              <option value="39"><span class="en">6 months — €39/mo</span></option>
+              <option value="33" selected><span class="en">12 months — €33/mo ★</span></option>
+            </select>
+            <div class="item-qty">
+              <div class="qty-ctrl">
+                <button class="qty-btn" onclick="changeItemQty('hm',-1)">−</button>
+                <div class="qty-num" id="qty-hm">1</div>
+                <button class="qty-btn" onclick="changeItemQty('hm',1)">+</button>
+              </div>
+              <button class="item-remove" onclick="removeItem('hm')"><span class="en">Remove</span><span class="nl">Verwijderen</span></button>
+            </div>
+          </div>
+          <div>
+            <div class="item-price" id="price-hm">€33</div>
+            <div class="item-per en">/month</div>
+            <div class="item-per nl">/maand</div>
+          </div>
+        </div>
+
+        <!-- ITEM 2: VigorCore -->
+        <div class="cart-item" id="item-vc">
+          <div class="item-img male">⚡</div>
+          <div>
+            <div class="item-name">VigorCore Complex</div>
+            <select class="plan-select" onchange="updatePlan('vc', this.value)">
+              <option value="54"><span class="en">1 month — €54/mo</span></option>
+              <option value="49"><span class="en">3 months — €49/mo</span></option>
+              <option value="43"><span class="en">6 months — €43/mo</span></option>
+              <option value="36" selected><span class="en">12 months — €36/mo ★</span></option>
+            </select>
+            <div class="item-qty">
+              <div class="qty-ctrl">
+                <button class="qty-btn" onclick="changeItemQty('vc',-1)">−</button>
+                <div class="qty-num" id="qty-vc">1</div>
+                <button class="qty-btn" onclick="changeItemQty('vc',1)">+</button>
+              </div>
+              <button class="item-remove" onclick="removeItem('vc')"><span class="en">Remove</span><span class="nl">Verwijderen</span></button>
+            </div>
+          </div>
+          <div>
+            <div class="item-price" id="price-vc">€36</div>
+            <div class="item-per en">/month</div>
+            <div class="item-per nl">/maand</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- UPSELL -->
+      <div class="upsell-section">
+        <div class="upsell-title en">Add to your order</div>
+        <div class="upsell-title nl">Voeg toe aan uw bestelling</div>
+        <div class="upsell-cards">
+          <div class="upsell-card" id="upsell-bh">
+            <div class="upsell-img female">🌸</div>
+            <div>
+              <div class="upsell-name">BalanceHer Blend</div>
+              <div class="upsell-price"><span class="en">From €35/mo (12-month plan)</span><span class="nl">Vanaf €35/mnd (12-maandenplan)</span></div>
+            </div>
+            <button class="upsell-add" onclick="addUpsell('bh')"><span class="en">+ Add</span><span class="nl">+ Toevoegen</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div class="summary-box">
+      <div class="summary-title en">Order summary</div>
+      <div class="summary-title nl">Besteloverzicht</div>
+
+      <div class="summary-row"><span class="label en">HairMax Formula</span><span class="label nl">HairMax Formula</span><span class="value" id="sum-hm">€33/mo</span></div>
+      <div class="summary-row"><span class="label en">VigorCore Complex</span><span class="label nl">VigorCore Complex</span><span class="value" id="sum-vc">€36/mo</span></div>
+      <div class="summary-row" id="sum-bh-row" style="display:none"><span class="label">BalanceHer Blend</span><span class="value" id="sum-bh">€35/mo</span></div>
+
+      <div class="discount-row">
+        <span class="discount-label en">✓ Annual plan discount applied</span>
+        <span class="discount-label nl">✓ Jaarplan korting toegepast</span>
+        <span class="discount-value" id="discountVal">−33%</span>
+      </div>
+
+      <div class="summary-row"><span class="label en">Shipping</span><span class="label nl">Verzending</span><span class="value" style="color:#0f9b77"><span class="en">Free</span><span class="nl">Gratis</span></span></div>
+
+      <div class="summary-row total">
+        <span><span class="en">Total / month</span><span class="nl">Totaal / maand</span></span>
+        <span class="value" id="grandTotal">€69</span>
+      </div>
+
+      <div style="margin-bottom:1.25rem;font-size:11px;font-weight:300;color:var(--text-muted)">
+        <span class="en">Billed annually as <strong id="annualTotal" style="color:var(--navy)">€828</strong></span>
+        <span class="nl">Jaarlijks gefactureerd als <strong id="annualTotal2" style="color:var(--navy)">€828</strong></span>
+      </div>
+
+      <div class="coupon-row">
+        <input class="coupon-input" type="text" id="couponInput" placeholder="Discount code" />
+        <button class="coupon-btn" onclick="applyCoupon()"><span class="en">Apply</span><span class="nl">Toepassen</span></button>
+      </div>
+
+      <button class="btn-checkout" onclick="alert('Checkout coming soon!')"><span class="en">Proceed to checkout →</span><span class="nl">Naar afrekenen →</span></button>
+      <a class="btn-continue" href="products.html"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Continue shopping</span><span class="nl">Verder winkelen</span></a>
+
+      <div class="summary-trust">
+        <div class="summary-trust-item"><svg viewBox="0 0 14 14" fill="none"><rect x="2" y="4" width="10" height="8" rx="1.5" stroke="#718096" stroke-width="1.1"/><path d="M5 4V3a2 2 0 014 0v1" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/></svg><span class="en">256-bit SSL encrypted checkout</span><span class="nl">256-bit SSL versleuteld afrekenen</span></div>
+        <div class="summary-trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#0f9b77" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">90-day money-back guarantee</span><span class="nl">90 dagen niet-goed-geld-terug</span></div>
+        <div class="summary-trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v6l3 2" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/><circle cx="7" cy="7" r="6" stroke="#718096" stroke-width="1.1"/></svg><span class="en">Cancel or pause anytime</span><span class="nl">Altijd opzegbaar of pauzeerbaar</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-wrap"><footer>
+    <div class="footer-logo">SUPPLEMENTZZ BV</div>
+    <div class="footer-links"><a href="#"><span class="en">Privacy</span><span class="nl">Privacy</span></a><a href="#"><span class="en">Terms</span><span class="nl">Voorwaarden</span></a><a href="#"><span class="en">Contact</span><span class="nl">Contact</span></a></div>
+    <div class="footer-copy en">© 2025 Supplementzz BV — Fictional demo company</div>
+    <div class="footer-copy nl">© 2025 Supplementzz BV — Fictief demobedrijf</div>
+  </footer></div>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div><div class="cookie-title en">We use cookies to improve your experience</div><div class="cookie-title nl">Wij gebruiken cookies om uw ervaring te verbeteren</div><p class="cookie-body en">Supplementzz BV uses functional and analytical cookies. We do not sell your data.</p><p class="cookie-body nl">Supplementzz BV gebruikt functionele en analytische cookies. Wij verkopen uw gegevens niet.</p></div>
+    <div class="cookie-actions"><button class="cookie-settings" onclick="dismissCookie()"><span class="en">Manage</span><span class="nl">Beheren</span></button><button class="cookie-decline" onclick="dismissCookie()"><span class="en">Decline</span><span class="nl">Weigeren</span></button><button class="cookie-accept" onclick="dismissCookie()"><span class="en">Accept all</span><span class="nl">Alles accepteren</span></button></div>
+  </div>
+</div>
+
+<script>
+  const prices = { hm: 33, vc: 36, bh: 0 };
+  const qtys   = { hm: 1,  vc: 1,  bh: 0 };
+  const active = { hm: true, vc: true, bh: false };
+
+  function setLang(l){document.getElementById('site').className='lang-'+l;document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-nl').classList.toggle('active',l==='nl')}
+
+  function updatePlan(id, val){
+    prices[id] = parseInt(val);
+    render();
+  }
+
+  function changeItemQty(id, d){
+    qtys[id] = Math.max(1, Math.min(5, qtys[id] + d));
+    document.getElementById('qty-'+id).textContent = qtys[id];
+    render();
+  }
+
+  function removeItem(id){
+    active[id] = false;
+    prices[id] = 0; qtys[id] = 0;
+    const el = document.getElementById('item-'+id);
+    if(el) el.style.display = 'none';
+    // show in upsell if applicable
+    const up = document.getElementById('upsell-'+id);
+    if(up) up.style.display = 'grid';
+    updateCount();
+    render();
+  }
+
+  function addUpsell(id){
+    active[id] = true;
+    if(id === 'bh'){ prices.bh = 35; qtys.bh = 1; }
+    document.getElementById('upsell-'+id).style.display = 'none';
+    // re-show cart item
+    const el = document.getElementById('item-'+id);
+    if(el){ el.style.display = 'grid'; }
+    else { addBHItem(); }
+    updateCount();
+    render();
+  }
+
+  function addBHItem(){
+    const items = document.getElementById('cartItems');
+    const div = document.createElement('div');
+    div.className = 'cart-item'; div.id = 'item-bh';
+    div.innerHTML = `<div class="item-img female">🌸</div><div><div class="item-name">BalanceHer Blend</div><select class="plan-select" onchange="updatePlan('bh',this.value)"><option value="52">1 month — €52/mo</option><option value="47">3 months — €47/mo</option><option value="42">6 months — €42/mo</option><option value="35" selected>12 months — €35/mo ★</option></select><div class="item-qty"><div class="qty-ctrl"><button class="qty-btn" onclick="changeItemQty('bh',-1)">−</button><div class="qty-num" id="qty-bh">1</div><button class="qty-btn" onclick="changeItemQty('bh',1)">+</button></div><button class="item-remove" onclick="removeItem('bh')">Remove</button></div></div><div><div class="item-price" id="price-bh">€35</div><div class="item-per">/month</div></div>`;
+    items.appendChild(div);
+  }
+
+  function updateCount(){
+    const count = Object.values(active).filter(Boolean).length;
+    document.getElementById('itemCount').textContent = count;
+    document.getElementById('itemCount2').textContent = count;
+  }
+
+  function render(){
+    let total = 0;
+    ['hm','vc','bh'].forEach(id => {
+      if(!active[id]) return;
+      const sub = prices[id] * qtys[id];
+      total += sub;
+      const pe = document.getElementById('price-'+id);
+      const sr = document.getElementById('sum-'+id);
+      if(pe) pe.textContent = '€'+sub;
+      if(sr) sr.textContent = '€'+prices[id]+'/mo';
+    });
+    document.getElementById('grandTotal').textContent = '€'+total;
+    const annual = total * 12;
+    document.getElementById('annualTotal').textContent = '€'+annual;
+    if(document.getElementById('annualTotal2')) document.getElementById('annualTotal2').textContent = '€'+annual;
+    const bhRow = document.getElementById('sum-bh-row');
+    if(bhRow) bhRow.style.display = active.bh ? 'flex' : 'none';
+  }
+
+  function applyCoupon(){
+    const v = document.getElementById('couponInput').value.trim().toUpperCase();
+    alert(v ? 'Code "'+v+'" — checkout coming soon!' : 'Please enter a code.');
+  }
+
+  function dismissCookie(){const b=document.getElementById('cookieBanner');b.classList.add('hidden');setTimeout(()=>b.style.display='none',400)}
+
+  render();
+</script>
+</body>
+</html>

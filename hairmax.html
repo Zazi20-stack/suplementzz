@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HairMax Formula — Supplementzz BV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--navy:#0a1628;--teal:#0f9b77;--teal-light:#e1f5ee;--teal-mid:#1d9e75;--off-white:#f7f8fa;--text-primary:#0a1628;--text-secondary:#4a5568;--text-muted:#718096;--border:rgba(10,22,40,0.1);--font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;--accent:#0f9b77;--accent-light:#e1f5ee;--accent-mid:#1d9e75}
+    body{font-family:var(--font);background:white;color:var(--text-primary);overflow-x:hidden}
+    .en{display:block}.nl{display:none}.lang-nl .en{display:none}.lang-nl .nl{display:block}
+    span.en{display:inline}span.nl{display:none}.lang-nl span.en{display:none}.lang-nl span.nl{display:inline}
+    .trust-bar{background:var(--off-white);border-bottom:0.5px solid var(--border);padding:0 2rem;height:44px;display:flex;align-items:center;justify-content:center}
+    .trust-items{display:flex;align-items:center;gap:2.5rem;max-width:1200px;width:100%;justify-content:center}
+    .trust-item{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;white-space:nowrap}
+    .trust-item svg{width:14px;height:14px;flex-shrink:0}.trust-divider{width:1px;height:16px;background:var(--border)}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-mark{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--navy)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .lang-switcher{display:flex;gap:2px;background:var(--off-white);border-radius:6px;padding:3px;border:0.5px solid var(--border)}
+    .lang-btn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;padding:4px 10px;border:none;cursor:pointer;border-radius:4px;background:transparent;color:var(--text-muted);transition:all .15s}
+    .lang-btn.active{background:white;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+    .nav-cta{font-size:13px;font-weight:500;padding:8px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+    .nav-cta:hover{background:#1a3360}
+    .breadcrumb{max-width:1200px;margin:0 auto;padding:1.25rem 2rem;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);font-family:var(--mono)}
+    .breadcrumb a{color:var(--text-muted);text-decoration:none}.breadcrumb-sep{opacity:.4}
+    .product-hero{max-width:1200px;margin:0 auto;padding:1rem 2rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .product-image-main{background:linear-gradient(145deg,#e1f5ee 0%,#9fe1cb 60%,#5dcaa5 100%);border-radius:20px;height:440px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .product-icon-large{font-size:96px;line-height:1}
+    .product-badge-dutch{position:absolute;top:16px;left:16px;background:white;border:0.5px solid var(--border);border-radius:20px;padding:5px 12px 5px 8px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;font-weight:500;color:var(--accent);letter-spacing:.06em}
+    .dot-accent{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    .product-badge-patent{position:absolute;bottom:16px;right:16px;background:var(--navy);border-radius:8px;padding:6px 12px;font-family:var(--mono);font-size:9px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase}
+    .thumbnail-strip{display:flex;gap:10px;margin-top:12px}
+    .thumbnail{flex:1;height:72px;border-radius:10px;border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;background:var(--off-white);transition:border-color .2s}
+    .thumbnail.active{border-color:var(--accent);border-width:1.5px}
+    .product-category{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;margin-bottom:.75rem}
+    .product-title{font-size:2.2rem;font-weight:300;letter-spacing:-.03em;color:var(--navy);line-height:1.1;margin-bottom:.5rem}
+    .product-subtitle{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.6;margin-bottom:1.5rem}
+    .rating-row{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+    .stars-sm{display:flex;gap:2px}.star-sm{width:13px;height:13px}
+    .rating-text{font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+    .price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:.5rem}
+    .price-main{font-family:var(--mono);font-size:2rem;font-weight:500;color:var(--navy)}
+    .price-period{font-size:13px;color:var(--text-muted)}.price-note{font-size:12px;color:var(--text-muted);margin-bottom:1.5rem}
+    .plan-selector{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1.5rem}
+    .plan-option{border:0.5px solid var(--border);border-radius:10px;padding:12px;cursor:pointer;text-align:center;transition:border-color .2s,background .2s;position:relative}
+    .plan-option.selected{border-color:var(--accent);border-width:1.5px;background:var(--accent-light)}
+    .plan-option:hover:not(.selected){border-color:rgba(10,22,40,.2)}
+    .plan-best{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--navy);color:white;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;padding:2px 10px;border-radius:10px;white-space:nowrap}
+    .plan-label{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+    .plan-price{font-size:15px;font-weight:500;color:var(--navy);font-family:var(--mono)}
+    .plan-save{font-size:10px;color:var(--accent);font-weight:500;margin-top:2px}
+    .plan-total{font-size:10px;color:var(--text-muted);margin-top:1px}
+    .qty-row{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+    .qty-label{font-size:13px;color:var(--text-secondary)}
+    .qty-ctrl{display:flex;align-items:center;border:0.5px solid var(--border);border-radius:8px;overflow:hidden}
+    .qty-btn{width:36px;height:36px;border:none;background:var(--off-white);cursor:pointer;font-size:16px;color:var(--navy)}
+    .qty-btn:hover{background:#e8e8e8}
+    .qty-num{width:40px;text-align:center;font-family:var(--mono);font-size:14px;font-weight:500;color:var(--navy);border-left:0.5px solid var(--border);border-right:0.5px solid var(--border);height:36px;line-height:36px}
+    .btn-cart{width:100%;padding:16px;background:var(--navy);color:white;border:none;border-radius:12px;cursor:pointer;font-size:15px;font-weight:500;transition:background .2s,transform .15s;margin-bottom:10px}
+    .btn-cart:hover{background:#1a3360;transform:translateY(-1px)}
+    .btn-wishlist{width:100%;padding:14px;background:transparent;color:var(--text-secondary);border:0.5px solid var(--border);border-radius:12px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:1.5rem}
+    .btn-wishlist:hover{border-color:var(--navy);color:var(--navy)}
+    .trust-pills{display:flex;gap:8px;flex-wrap:wrap}
+    .trust-pill{display:flex;align-items:center;gap:5px;background:var(--off-white);border:0.5px solid var(--border);border-radius:20px;padding:5px 10px;font-size:11px;color:var(--text-muted);font-family:var(--mono)}
+    .tabs-section{max-width:1200px;margin:0 auto;padding:0 2rem 4rem}
+    .tabs-nav{display:flex;border-bottom:0.5px solid var(--border);margin-bottom:3rem}
+    .tab-btn{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:1rem 1.5rem;border:none;background:none;cursor:pointer;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-0.5px}
+    .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
+    .tab-panel{display:none}.tab-panel.active{display:block}
+    .ingredients-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-bottom:2rem}
+    .ingredient-card{border:0.5px solid var(--border);border-radius:14px;padding:1.25rem;position:relative;overflow:hidden}
+    .ingredient-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent)}
+    .ingredient-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;gap:8px;flex-wrap:wrap}
+    .ingredient-name{font-size:15px;font-weight:500;color:var(--navy)}
+    .ingredient-dose{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent);background:var(--accent-light);padding:3px 8px;border-radius:4px;flex-shrink:0}
+    .ingredient-role{font-size:11px;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono);margin-bottom:.4rem}
+    .ingredient-desc{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.65}
+    .ingredient-evidence{display:inline-flex;margin-top:.6rem;font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--accent);background:var(--accent-light);padding:3px 8px;border-radius:4px}
+    .dosage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem}
+    .dosage-card{background:var(--off-white);border-radius:14px;padding:1.5rem;text-align:center}
+    .dosage-icon{width:48px;height:48px;border-radius:12px;background:white;border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:22px}
+    .dosage-label{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+    .dosage-value{font-size:16px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .dosage-note{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.5}
+    .warning-box{background:#faeeda;border:0.5px solid rgba(186,117,23,.2);border-radius:12px;padding:1rem 1.25rem;display:flex;align-items:flex-start;gap:10px;margin-bottom:2rem}
+    .warning-text{font-size:13px;font-weight:300;color:#633806;line-height:1.6}
+    .timeline-box{background:var(--off-white);border-radius:14px;padding:1.5rem 2rem;margin-bottom:2rem}
+    .timeline-row{display:grid;grid-template-columns:80px 1fr;gap:1rem;padding:.75rem 0;border-bottom:0.5px solid var(--border)}
+    .timeline-row:last-child{border-bottom:none}
+    .timeline-week{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent);padding-top:2px}
+    .timeline-text{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.6}
+    .science-intro{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.75;max-width:700px;margin-bottom:2.5rem}
+    .science-disclaimer{background:#f1efe8;border-radius:10px;padding:.875rem 1.125rem;font-size:12px;font-weight:300;color:#5f5e5a;line-height:1.6;margin-bottom:2.5rem}
+    .studies-list{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+    .study-card{border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;display:grid;grid-template-columns:36px 1fr;gap:1rem}
+    .study-num{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-muted);margin-top:2px}
+    .study-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .study-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);margin-bottom:.5rem}
+    .study-finding{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.65}
+    .study-limitation{font-size:12px;font-weight:300;color:var(--text-muted);margin-top:.4rem;font-style:italic}
+    .study-badges{display:flex;gap:6px;margin-top:.5rem}
+    .study-badge{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+    .badge-rct{background:#e1f5ee;color:#0f6e56}.badge-review{background:var(--accent-light);color:var(--accent)}.badge-obs{background:#f1efe8;color:#5f5e5a}
+    .efficacy-section{margin-bottom:2rem}
+    .efficacy-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .efficacy-subtitle{font-size:12px;font-weight:300;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.5}
+    .efficacy-row{display:flex;align-items:center;gap:12px;margin-bottom:.75rem}
+    .efficacy-label{font-size:13px;color:var(--text-secondary);width:200px;flex-shrink:0}
+    .efficacy-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+    .efficacy-fill{height:100%;background:var(--accent);border-radius:4px}
+    .efficacy-pct{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent);width:36px;text-align:right}
+    .mechanism-box{background:var(--navy);border-radius:14px;padding:1.75rem 2rem;margin-bottom:2rem;color:white}
+    .mechanism-title{font-size:15px;font-weight:500;margin-bottom:1rem}
+    .mechanism-steps{display:flex;flex-direction:column;gap:.875rem}
+    .mechanism-step{display:grid;grid-template-columns:24px 1fr;gap:10px}
+    .mechanism-dot{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.6);flex-shrink:0}
+    .mechanism-text{font-size:13px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.6}
+    .mechanism-text strong{font-weight:500;color:white}
+    .footer-wrap{border-top:0.5px solid var(--border);margin-top:2rem}
+    footer{max-width:1200px;margin:0 auto;padding:2rem;display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text-muted)}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:12px;color:var(--text-muted);text-decoration:none}
+    .footer-copy{font-size:12px;color:var(--text-muted)}
+    .cookie-banner{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 3rem);max-width:900px;background:white;border:0.5px solid var(--border);border-radius:16px;padding:1.25rem 1.75rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;z-index:999;box-shadow:0 4px 24px rgba(10,22,40,0.08);transition:opacity .3s,transform .3s}
+    .cookie-banner.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+    .cookie-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .cookie-body{font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.6}
+    .cookie-actions{display:flex;gap:8px;flex-shrink:0}
+    .cookie-accept{font-size:12px;font-weight:500;padding:9px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer}
+    .cookie-decline{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:0.5px solid var(--border);border-radius:8px;cursor:pointer}
+    .cookie-settings{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:none;cursor:pointer;text-decoration:underline}
+    @media(max-width:900px){.product-hero{grid-template-columns:1fr;gap:2rem}.ingredients-grid,.dosage-grid{grid-template-columns:1fr}.plan-selector{grid-template-columns:1fr 1fr}.nav-links{display:none}footer{flex-direction:column;gap:1rem;text-align:center}}
+  </style>
+</head>
+<body>
+<div id="site" class="lang-en">
+  <div class="trust-bar"><div class="trust-items">
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5H13L9.5 7.6 10.8 12 7 9.5 3.2 12 4.5 7.6 1 5H5.2L7 1Z" stroke="#0f9b77" stroke-width="1.1" stroke-linejoin="round"/></svg><span class="en">Dutch quality certified</span><span class="nl">Nederlandse kwaliteit gecertificeerd</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><rect x="2" y="4" width="10" height="8" rx="1.5" stroke="#718096" stroke-width="1.1"/><path d="M5 4V3a2 2 0 014 0v1" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/></svg><span class="en">Secure &amp; encrypted payment</span><span class="nl">Veilige &amp; versleutelde betaling</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#0f9b77" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">90-day money-back guarantee</span><span class="nl">90 dagen niet-goed-geld-terug</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v6l3 2" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/><circle cx="7" cy="7" r="6" stroke="#718096" stroke-width="1.1"/></svg><span class="en">Free shipping from €75</span><span class="nl">Gratis verzending vanaf €75</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M1 10l3-6 3 4 2-2 4 4" stroke="#718096" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Patented formulation</span><span class="nl">Gepatenteerde formule</span></div>
+  </div></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.2"/><path d="M8 4v8M5 6.5h6M5 9.5h6" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div>SUPPLEMENTZZ</a>
+    <ul class="nav-links">
+      <li><a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a></li>
+      <li><a href="index.html#science"><span class="en">Science</span><span class="nl">Wetenschap</span></a></li>
+      <li><a href="#"><span class="en">About</span><span class="nl">Over ons</span></a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right"><a href="cart.html" style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--text-secondary);text-decoration:none;padding:6px 10px;border:0.5px solid var(--border);border-radius:8px;" onmouseover="this.style.color='var(--navy)'" onmouseout="this.style.color='var(--text-secondary)'"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1h2l1.5 7h7l1-5H4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="12" r="1" fill="currentColor"/><circle cx="11" cy="12" r="1" fill="currentColor"/></svg>Cart</a>
+      <div class="lang-switcher"><button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button><button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button></div>
+      <button class="nav-cta"><span class="en">Shop now</span><span class="nl">Nu winkelen</span></button>
+    </div>
+  </nav>
+
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a><span class="breadcrumb-sep">›</span><span style="color:var(--navy)">HairMax Formula</span></div>
+
+  <div class="product-hero">
+    <div>
+      <div class="product-image-main">
+        <div class="product-badge-dutch"><div class="dot-accent"></div><span class="en">Made in the Netherlands</span><span class="nl">Gemaakt in Nederland</span></div>
+        <div class="product-icon-large">🌿</div>
+        <div class="product-badge-patent">Patented formula · NL2031847</div>
+      </div>
+      <div class="thumbnail-strip"><div class="thumbnail active">🌿</div><div class="thumbnail">💊</div><div class="thumbnail">📋</div><div class="thumbnail">🔬</div></div>
+    </div>
+    <div>
+      <div class="product-category"><span class="en">Hair growth · SKU HM-001</span><span class="nl">Haargroei · SKU HM-001</span></div>
+      <h1 class="product-title">HairMax<br>Formula</h1>
+      <p class="product-subtitle en">A clinically-informed biotin complex with DHT-blocking botanicals and keratin precursors. Formulated in the Netherlands for visible results from week 8–12.</p>
+      <p class="product-subtitle nl">Een klinisch onderbouwd biotinecomplex met DHT-blokkerende botanische stoffen en keratinevoorlopers. Geformuleerd in Nederland voor zichtbare resultaten vanaf week 8–12.</p>
+      <div class="rating-row">
+        <div class="stars-sm">
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#0f9b77"/></svg>
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#0f9b77"/></svg>
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#0f9b77"/></svg>
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#0f9b77"/></svg>
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#888780"/></svg>
+        </div>
+        <span class="rating-text">4.7 · 834 reviews</span>
+      </div>
+      <div class="price-row"><span class="price-main" id="priceDisplay">€49</span><span class="price-period" id="periodDisplay">/ <span class="en">month</span><span class="nl">maand</span></span></div>
+      <p class="price-note"><span class="en">Free shipping · Cancel anytime</span><span class="nl">Gratis verzending · Altijd opzegbaar</span></p>
+      <div class="plan-selector">
+        <div class="plan-option selected" onclick="selectPlan(this,49)"><div class="plan-label"><span class="en">1 month</span><span class="nl">1 maand</span></div><div class="plan-price">€49/mo</div><div class="plan-save">&nbsp;</div><div class="plan-total">&nbsp;</div></div>
+        <div class="plan-option" onclick="selectPlan(this,44)"><div class="plan-label"><span class="en">3 months</span><span class="nl">3 maanden</span></div><div class="plan-price">€44/mo</div><div class="plan-save"><span class="en">Save 10%</span><span class="nl">Bespaar 10%</span></div><div class="plan-total">€132 <span class="en">quarterly</span><span class="nl">per kwartaal</span></div></div>
+        <div class="plan-option" onclick="selectPlan(this,39)"><div class="plan-label"><span class="en">6 months</span><span class="nl">6 maanden</span></div><div class="plan-price">€39/mo</div><div class="plan-save"><span class="en">Save 20%</span><span class="nl">Bespaar 20%</span></div><div class="plan-total">€234 <span class="en">bi-annually</span><span class="nl">per half jaar</span></div></div>
+        <div class="plan-option" style="padding-top:20px" onclick="selectPlan(this,33)"><div class="plan-best"><span class="en">Best value</span><span class="nl">Beste waarde</span></div><div class="plan-label"><span class="en">12 months</span><span class="nl">12 maanden</span></div><div class="plan-price">€33/mo</div><div class="plan-save"><span class="en">Save 33%</span><span class="nl">Bespaar 33%</span></div><div class="plan-total">€396 <span class="en">annually</span><span class="nl">per jaar</span></div></div>
+      </div>
+      <div class="qty-row">
+        <span class="qty-label"><span class="en">Quantity</span><span class="nl">Aantal</span></span>
+        <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(-1)">−</button><div class="qty-num" id="qtyNum">1</div><button class="qty-btn" onclick="changeQty(1)">+</button></div>
+      </div>
+      <button class="btn-cart" onclick="addToCart(this)"><span class="en">Add to cart</span><span class="nl">In winkelwagen</span> — <span id="cartTotal">€49</span></button>
+      <button class="btn-wishlist"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S2 9.5 2 5.5A3.5 3.5 0 018 3a3.5 3.5 0 016 2.5c0 4-6 8-6 8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="en">Save to wishlist</span><span class="nl">Opslaan in verlanglijst</span></button>
+      <div class="trust-pills">
+        <div class="trust-pill"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="#0f9b77" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">90-day guarantee</span><span class="nl">90 dagen garantie</span></div>
+        <div class="trust-pill"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1L7.3 4H11L8.4 5.9 9.3 9 6 7.2 2.7 9 3.6 5.9 1 4H4.7L6 1Z" stroke="#0f9b77" stroke-width="1" stroke-linejoin="round"/></svg><span class="en">Dutch certified</span><span class="nl">Nederlands gecertificeerd</span></div>
+        <div class="trust-pill"><svg viewBox="0 0 12 12" fill="none"><rect x="1" y="3" width="10" height="7" rx="1.5" stroke="#718096" stroke-width="1"/><path d="M4 3V2a2 2 0 014 0v1" stroke="#718096" stroke-width="1" stroke-linecap="round"/></svg><span class="en">Secure payment</span><span class="nl">Veilige betaling</span></div>
+        <div class="trust-pill"><svg viewBox="0 0 12 12" fill="none"><path d="M1 9l2.5-5 2.5 3 1.5-1.5L11 9" stroke="#718096" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Free shipping</span><span class="nl">Gratis verzending</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'ingredients')"><span class="en">Ingredients</span><span class="nl">Ingrediënten</span></button>
+      <button class="tab-btn" onclick="switchTab(this,'howto')"><span class="en">How to use</span><span class="nl">Gebruik</span></button>
+      <button class="tab-btn" onclick="switchTab(this,'science')"><span class="en">The science</span><span class="nl">De wetenschap</span></button>
+    </div>
+
+    <div class="tab-panel active" id="tab-ingredients">
+      <div class="ingredients-grid">
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Biotin (Vitamin B7)</span><span class="ingredient-dose">5,000 mcg</span></div><div class="ingredient-role en">Keratin synthesis</div><div class="ingredient-role nl">Keratinesynthese</div><p class="ingredient-desc en">Biotin acts as a coenzyme for carboxylase enzymes involved in fatty acid synthesis and amino acid metabolism — both essential for keratin production. Clinical evidence supports doses of 2,500–5,000 mcg for hair outcomes; higher doses exceed what the evidence supports and are excreted as waste.</p><p class="ingredient-desc nl">Biotine werkt als co-enzym voor carboxylase-enzymen betrokken bij vetzuursynthese en aminozuurmetabolisme — beide essentieel voor keratineproductie. Klinisch bewijs ondersteunt doses van 2.500–5.000 mcg voor haaruitkomsten.</p><div class="ingredient-evidence en">Systematic review evidence</div><div class="ingredient-evidence nl">Systematisch review bewijs</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Saw Palmetto Extract</span><span class="ingredient-dose">320 mg</span></div><div class="ingredient-role en">5α-reductase inhibition</div><div class="ingredient-role nl">5α-reductaseremming</div><p class="ingredient-desc en">Serenoa repens inhibits both isoforms of 5α-reductase (type I and II), reducing local conversion of testosterone to dihydrotestosterone (DHT). DHT binds androgen receptors in scalp follicles, progressively miniaturising them. At 320 mg/day of a standardised liposterolic extract, inhibition is clinically meaningful without the systemic side-effect profile of pharmaceutical alternatives.</p><p class="ingredient-desc nl">Serenoa repens remt beide isovormen van 5α-reductase (type I en II), waardoor de lokale omzetting van testosteron naar dihydrotestosteron (DHT) wordt verminderd. DHT bindt androgeenreceptoren in hoofdhaarfollikels, waardoor ze geleidelijk miniaturiseren.</p><div class="ingredient-evidence en">RCT evidence available</div><div class="ingredient-evidence nl">RCT-bewijs beschikbaar</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">L-Cysteine</span><span class="ingredient-dose">500 mg</span></div><div class="ingredient-role en">Disulphide bond formation</div><div class="ingredient-role nl">Disulfidebindingsvorming</div><p class="ingredient-desc en">Keratin is approximately 14–18% cysteine by amino acid composition. Disulphide bonds between cysteine residues give the hair shaft its tensile strength. Oral L-cysteine raises plasma cysteine, supporting keratin synthesis in actively dividing matrix cells at the follicle base — particularly relevant when dietary protein intake is suboptimal.</p><p class="ingredient-desc nl">Keratine bestaat voor ongeveer 14–18% uit cysteïne. Disulfidebindingen geven de haarschacht zijn treksterkte. Oraal L-cysteïne verhoogt plasma-cysteïne, ondersteunt keratinesynthese in actief delende matrixcellen bij de basis van de follikel.</p><div class="ingredient-evidence en">Mechanistic evidence</div><div class="ingredient-evidence nl">Mechanistisch bewijs</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Zinc Picolinate</span><span class="ingredient-dose">15 mg</span></div><div class="ingredient-role en">Follicle cell proliferation</div><div class="ingredient-role nl">Follikelcelproliferatie</div><p class="ingredient-desc en">Zinc is a cofactor for enzymes critical for rapid cell division in the hair matrix. Serum zinc deficiency is significantly more prevalent in patients with telogen effluvium and alopecia areata. Picolinate is chosen for superior bioavailability. Dose is set at 15 mg — within the therapeutic range and safely below the upper intake level of 25 mg/day.</p><p class="ingredient-desc nl">Zink is een cofactor voor enzymen die essentieel zijn voor snelle celdeling in de haarmatrix. Serumzinktekort komt significant vaker voor bij patiënten met telogeen effluvium en alopecia areata.</p><div class="ingredient-evidence en">Observational + mechanistic</div><div class="ingredient-evidence nl">Observationeel + mechanistisch</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Horsetail Extract (Equisetum)</span><span class="ingredient-dose">150 mg</span></div><div class="ingredient-role en">Silica &amp; antioxidant support</div><div class="ingredient-role nl">Silica &amp; antioxidantondersteuning</div><p class="ingredient-desc en">Equisetum arvense is among the highest plant sources of bioavailable orthosilicic acid. Silicon is incorporated into glycosaminoglycans and collagen in connective tissue surrounding the dermal papilla, associated with improved hair tensile strength in pilot trials. Also contains kaempferol and quercetin — flavonoids with antioxidant activity at follicle level.</p><p class="ingredient-desc nl">Equisetum arvense behoort tot de hoogste plantaardige bronnen van biologisch beschikbaar orthosiliciumzuur. Silicium wordt ingebouwd in glycosaminoglycanen en collageen rondom de dermale papil.</p><div class="ingredient-evidence en">Pilot study evidence</div><div class="ingredient-evidence nl">Pilotstudiebewijzen</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Vitamin D3 (Cholecalciferol)</span><span class="ingredient-dose">25 mcg (1,000 IU)</span></div><div class="ingredient-role en">Follicle cycle regulation</div><div class="ingredient-role nl">Follikelcyclusregulatie</div><p class="ingredient-desc en">Vitamin D receptors (VDR) are expressed in keratinocytes and dermal papilla cells throughout the hair cycle. VDR knockout mouse models show profound hair loss, establishing a causal role. Serum 25(OH)D below 20 ng/mL is consistently associated with non-scarring alopecias. 1,000 IU targets sufficiency in most adults without approaching toxicity thresholds (&gt;4,000 IU/day chronically).</p><p class="ingredient-desc nl">Vitamine D-receptoren (VDR) worden tot expressie gebracht in keratinocyten en dermale papilcellen. VDR-knockout muismodellen tonen ernstig haarverlies, waarmee een causale rol is vastgesteld.</p><div class="ingredient-evidence en">Mechanistic + observational</div><div class="ingredient-evidence nl">Mechanistisch + observationeel</div></div>
+      </div>
+      <div style="background:#f1efe8;border-radius:12px;padding:1rem 1.25rem;font-size:12px;font-weight:300;color:#5f5e5a;line-height:1.6"><span class="en">All doses reflect the current body of evidence, reviewed annually by our scientific advisory board. Where evidence is mechanistic rather than clinical, this is stated. We do not claim to treat, cure, or prevent any medical condition.</span><span class="nl">Alle doses weerspiegelen het huidige bewijsmateriaal, jaarlijks beoordeeld door onze wetenschappelijke adviesraad. Waar bewijs mechanistisch is in plaats van klinisch, wordt dit vermeld.</span></div>
+    </div>
+
+    <div class="tab-panel" id="tab-howto">
+      <div class="dosage-grid">
+        <div class="dosage-card"><div class="dosage-icon">💊</div><div class="dosage-label"><span class="en">Daily dose</span><span class="nl">Dagelijkse dosis</span></div><div class="dosage-value">2 <span class="en">capsules</span><span class="nl">capsules</span></div><p class="dosage-note en">Take together or split: 1 morning + 1 evening. Consistency matters more than timing.</p><p class="dosage-note nl">Samen innemen of verdeeld: 1 's ochtends + 1 's avonds. Consistentie is belangrijker dan timing.</p></div>
+        <div class="dosage-card"><div class="dosage-icon">🍳</div><div class="dosage-label"><span class="en">With food</span><span class="nl">Met eten</span></div><div class="dosage-value"><span class="en">With a meal</span><span class="nl">Met een maaltijd</span></div><p class="dosage-note en">Vitamin D3 is fat-soluble and absorbs significantly better taken alongside dietary fat.</p><p class="dosage-note nl">Vitamine D3 is vetoplosbaar en wordt significant beter opgenomen wanneer het samen met voedingsvet wordt ingenomen.</p></div>
+        <div class="dosage-card"><div class="dosage-icon">💧</div><div class="dosage-label"><span class="en">Hydration</span><span class="nl">Hydratatie</span></div><div class="dosage-value">200 ml+ <span class="en">water</span><span class="nl">water</span></div><p class="dosage-note en">Aids capsule transit and supports biotin absorption, which requires adequate hydration.</p><p class="dosage-note nl">Bevordert het passeren van capsules en ondersteunt de biotineabsorptie, die adequate hydratatie vereist.</p></div>
+      </div>
+      <div class="warning-box">
+        <div style="flex-shrink:0;margin-top:1px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14.5 13H1.5L8 2Z" stroke="#854f0b" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 6v4M8 11.5v.5" stroke="#854f0b" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <p class="warning-text en">Not recommended during pregnancy or breastfeeding without medical advice. High-dose biotin (≥5,000 mcg) can interfere with certain thyroid and cardiac troponin immunoassays — inform your physician if being tested. Consult your GP before use if you take blood thinners or have a chronic condition.</p>
+        <p class="warning-text nl">Niet aanbevolen tijdens zwangerschap of borstvoeding zonder medisch advies. Hoge doses biotine (≥5.000 mcg) kunnen interfereren met bepaalde schildklier- en cardiale troponine-immunoassays — informeer uw arts als u wordt getest.</p>
+      </div>
+      <div class="timeline-box">
+        <div style="font-size:15px;font-weight:500;color:var(--navy);margin-bottom:1rem"><span class="en">What to expect over time</span><span class="nl">Wat u in de loop van de tijd kunt verwachten</span></div>
+        <div class="timeline-row"><div class="timeline-week"><span class="en">Weeks 1–4</span><span class="nl">Weken 1–4</span></div><p class="timeline-text en">Ingredients accumulate to therapeutic plasma levels. No visible changes expected — this does not indicate the product is not working. Some users report reduced shedding within the first month.</p><p class="timeline-text nl">Ingrediënten accumuleren tot therapeutische plasmaniveaus. Geen zichtbare veranderingen verwacht — dit betekent niet dat het product niet werkt.</p></div>
+        <div class="timeline-row"><div class="timeline-week"><span class="en">Weeks 5–8</span><span class="nl">Weken 5–8</span></div><p class="timeline-text en">Follicles in telogen phase may begin transitioning to anagen. Hair may feel marginally stronger or less prone to breakage. Individual variation is significant at this stage.</p><p class="timeline-text nl">Follikels in de telogenefase kunnen beginnen over te gaan naar anageen. Haar kan iets sterker aanvoelen. Individuele variatie is in dit stadium aanzienlijk.</p></div>
+        <div class="timeline-row"><div class="timeline-week"><span class="en">Weeks 9–12</span><span class="nl">Weken 9–12</span></div><p class="timeline-text en">Majority of users who respond report visible improvement in density and strand strength within this window — aligning with the average anagen follicle cycle of 10–12 weeks.</p><p class="timeline-text nl">De meerderheid van de gebruikers die reageren, rapporteert zichtbare verbetering in dichtheid en haarschachtsterkte binnen dit venster.</p></div>
+        <div class="timeline-row"><div class="timeline-week"><span class="en">Month 4–6</span><span class="nl">Maand 4–6</span></div><p class="timeline-text en">Sustained cumulative improvement. We recommend a minimum 6-month course. If no improvement by month 3, contact us to activate your 90-day guarantee.</p><p class="timeline-text nl">Aanhoudende cumulatieve verbetering. We raden een minimumkuur van 6 maanden aan. Als er geen verbetering is na maand 3, neem dan contact op om uw 90-dagengarantie te activeren.</p></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-science">
+      <p class="science-intro en">HairMax Formula is built on peer-reviewed research into the biology of the human hair follicle. Every ingredient was selected based on published clinical or mechanistic evidence, presented here transparently including study limitations.</p>
+      <p class="science-intro nl">HairMax Formula is gebouwd op peer-reviewed onderzoek naar de biologie van de menselijke haarfollikel. Elk ingrediënt werd geselecteerd op basis van gepubliceerd klinisch of mechanistisch bewijs, hier transparant gepresenteerd inclusief beperkingen van de studie.</p>
+      <div class="science-disclaimer en">The studies below informed our formulation choices but were not conducted on HairMax Formula specifically. Evidence quality varies — RCTs provide strongest evidence; mechanistic and observational studies are supportive but not conclusive. We do not claim to treat or cure any condition.</div>
+      <div class="science-disclaimer nl">De onderstaande studies hebben onze formuleringsopties geïnformeerd maar zijn niet specifiek op HairMax Formula uitgevoerd. Bewijskwaliteit varieert — RCT's bieden het sterkste bewijs; mechanistisch en observationeel bewijs is ondersteunend maar niet doorslaggevend.</div>
+      <div class="mechanism-box">
+        <div class="mechanism-title en">How hair loss happens — and where we intervene</div>
+        <div class="mechanism-title nl">Hoe haarverlies ontstaat — en waar we ingrijpen</div>
+        <div class="mechanism-steps">
+          <div class="mechanism-step"><div class="mechanism-dot">1</div><p class="mechanism-text en"><strong>DHT accumulation:</strong> 5α-reductase converts testosterone to DHT in the scalp. DHT binds androgen receptors in dermal papilla cells, triggering a cascade that shortens the anagen phase with each successive cycle.</p><p class="mechanism-text nl"><strong>DHT-accumulatie:</strong> 5α-reductase zet testosteron om in DHT in de hoofdhuid. DHT bindt androgeenreceptoren in dermale papilcellen en triggert een cascade die de anageenfase verkort.</p></div>
+          <div class="mechanism-step"><div class="mechanism-dot">2</div><p class="mechanism-text en"><strong>Follicle miniaturisation:</strong> Over successive cycles, affected follicles produce progressively thinner, shorter hairs — eventually producing only vellus hairs or ceasing production entirely.</p><p class="mechanism-text nl"><strong>Follikelminiaturisatie:</strong> In opeenvolgende cycli produceren aangetaste follikels steeds dunnere, kortere haren — uiteindelijk alleen velusharen of helemaal geen productie meer.</p></div>
+          <div class="mechanism-step"><div class="mechanism-dot">3</div><p class="mechanism-text en"><strong>Our approach:</strong> Saw palmetto inhibits 5α-reductase to reduce DHT. Biotin, L-cysteine, and zinc support keratin synthesis machinery. Vitamin D3 maintains VDR-mediated follicle cycle regulation. Together these address multiple points in the pathway.</p><p class="mechanism-text nl"><strong>Onze aanpak:</strong> Zaagpalm remt 5α-reductase om DHT te verminderen. Biotine, L-cysteïne en zink ondersteunen de keratinesynthesemachinery. Vitamine D3 handhaaft VDR-gemedieerde follikelcyclusregulatie.</p></div>
+        </div>
+      </div>
+      <div class="studies-list">
+        <div class="study-card"><div class="study-num">01</div><div><div class="study-title en">Biotin for the treatment of nail disease, hair and skin</div><div class="study-title nl">Biotine voor de behandeling van nagelziekten, haar en huid</div><div class="study-meta">Skin Appendage Disorders · Patel et al., 2017 · Systematic review, 18 reported cases</div><p class="study-finding en">Systematic review of published case reports found biotin supplementation (2,500–5,000 mcg) was associated with improved hair quantity and quality in patients with underlying biotin deficiency or metabolic disorders affecting biotin metabolism. Evidence in biotin-sufficient individuals is limited; most studies lack placebo controls.</p><p class="study-finding nl">Systematische review van gepubliceerde casusrapporten vond dat biotinesuppletie (2.500–5.000 mcg) werd geassocieerd met verbeterde haarhoeveelheid en -kwaliteit bij patiënten met biotinedeficiëntie.</p><p class="study-limitation en">Limitation: Based on case reports rather than RCTs. Effect size in biotin-sufficient individuals remains unclear.</p><p class="study-limitation nl">Beperking: Gebaseerd op casusrapporten in plaats van RCT's. Effect bij biotine-voldoende personen blijft onduidelijk.</p><div class="study-badges"><span class="study-badge badge-review"><span class="en">Systematic review</span><span class="nl">Systematische review</span></span></div></div></div>
+        <div class="study-card"><div class="study-num">02</div><div><div class="study-title en">Randomised trial of Serenoa repens versus placebo in mild-to-moderate androgenetic alopecia</div><div class="study-title nl">Gerandomiseerde studie van Serenoa repens versus placebo bij androgenetische alopecia</div><div class="study-meta">Journal of Alternative & Complementary Medicine · Murugusundram, 2009 · RCT, n=38</div><p class="study-finding en">Participants receiving 320 mg/day liposterolic saw palmetto extract over 24 weeks showed statistically significant improvement in hair count at the vertex (p&lt;0.05) versus placebo. Tolerability was excellent. The authors attributed the effect to 5α-reductase inhibition reducing scalp DHT levels.</p><p class="study-finding nl">Deelnemers die 24 weken lang 320 mg/dag liposterolisch zaagpalmextract kregen, vertoonden statistisch significante verbetering in haartelling (p&lt;0,05) versus placebo. Verdraagbaarheid was uitstekend.</p><p class="study-limitation en">Limitation: Small sample size (n=38). Single-centre. Longer-term data beyond 24 weeks not reported.</p><p class="study-limitation nl">Beperking: Kleine steekproef (n=38). Eén centrum. Langetermijngegevens na 24 weken niet gerapporteerd.</p><div class="study-badges"><span class="study-badge badge-rct">RCT</span></div></div></div>
+        <div class="study-card"><div class="study-num">03</div><div><div class="study-title en">Serum ferritin and vitamin D in female hair loss: do they play a role?</div><div class="study-title nl">Serumferritine en vitamine D bij vrouwelijk haarverlies: spelen ze een rol?</div><div class="study-meta">Skin Pharmacology and Physiology · Rasheed et al., 2013 · Case-control, n=180</div><p class="study-finding en">Serum 25(OH)D levels were significantly lower in women with telogen effluvium and androgenetic alopecia versus controls (p&lt;0.001). The correlation persisted after adjusting for ferritin, age, and BMI, suggesting an independent association.</p><p class="study-finding nl">Serum 25(OH)D-waarden waren significant lager bij vrouwen met telogeen effluvium en androgenetische alopecia versus controles (p&lt;0,001).</p><p class="study-limitation en">Limitation: Observational — association does not establish causation. Supplementation trials in vitamin D-sufficient populations show inconsistent results.</p><p class="study-limitation nl">Beperking: Observationeel — associatie bewijst geen causaliteit. Suppletieproeven bij vitamine D-voldoende populaties tonen inconsistente resultaten.</p><div class="study-badges"><span class="study-badge badge-obs"><span class="en">Case-control</span><span class="nl">Case-control</span></span></div></div></div>
+        <div class="study-card"><div class="study-num">04</div><div><div class="study-title en">Zinc levels in alopecia areata and androgenetic alopecia: a meta-analysis</div><div class="study-title nl">Zinkniveaus bij alopecia areata en androgenetische alopecia: een meta-analyse</div><div class="study-meta">Dermatology Practical & Conceptual · Ozturk et al., 2020 · Meta-analysis, 14 studies</div><p class="study-finding en">Pooled analysis of 14 case-control studies found significantly lower serum zinc in alopecia areata (SMD −1.05, p&lt;0.001) and androgenetic alopecia (SMD −0.57, p=0.002) vs healthy controls. Association was consistent across populations.</p><p class="study-finding nl">Gepoolde analyse van 14 case-controlstudies vond significant lager serumzink bij alopecia areata (SMD −1,05, p&lt;0,001) en androgenetische alopecia (SMD −0,57, p=0,002) versus gezonde controles.</p><p class="study-limitation en">Limitation: Association between deficiency and hair loss does not directly imply supplementation benefits zinc-sufficient individuals.</p><p class="study-limitation nl">Beperking: Associatie tussen tekort en haarverlies impliceert niet direct dat suppletie zinkvoldoende personen ten goede komt.</p><div class="study-badges"><span class="study-badge badge-review"><span class="en">Meta-analysis</span><span class="nl">Meta-analyse</span></span></div></div></div>
+      </div>
+      <div class="efficacy-section">
+        <div class="efficacy-title en">Self-reported outcomes at 90 days</div><div class="efficacy-title nl">Zelfgerapporteerde uitkomsten na 90 dagen</div>
+        <div class="efficacy-subtitle en">Survey data from 1,240 subscribers completing a minimum 90-day course. Self-reported and observational — not a clinical trial.</div>
+        <div class="efficacy-subtitle nl">Enquêtegegevens van 1.240 abonnees die een minimumkuur van 90 dagen hebben voltooid. Zelfgerapporteerd en observationeel — geen klinische studie.</div>
+        <div class="efficacy-row"><span class="efficacy-label en">Reduced hair shedding</span><span class="efficacy-label nl">Verminderd haarverlies</span><div class="efficacy-track"><div class="efficacy-fill" style="width:64%"></div></div><span class="efficacy-pct">64%</span></div>
+        <div class="efficacy-row"><span class="efficacy-label en">Improved strand strength</span><span class="efficacy-label nl">Verbeterde haarschachtsterkte</span><div class="efficacy-track"><div class="efficacy-fill" style="width:58%"></div></div><span class="efficacy-pct">58%</span></div>
+        <div class="efficacy-row"><span class="efficacy-label en">Improved thickness / volume</span><span class="efficacy-label nl">Verbeterde dikte / volume</span><div class="efficacy-track"><div class="efficacy-fill" style="width:51%"></div></div><span class="efficacy-pct">51%</span></div>
+        <div class="efficacy-row"><span class="efficacy-label en">Visible new growth</span><span class="efficacy-label nl">Zichtbare nieuwe haargroei</span><div class="efficacy-track"><div class="efficacy-fill" style="width:38%"></div></div><span class="efficacy-pct">38%</span></div>
+        <div class="efficacy-row"><span class="efficacy-label en">No noticeable change</span><span class="efficacy-label nl">Geen merkbare verandering</span><div class="efficacy-track"><div class="efficacy-fill" style="width:23%;background:#b4b2a9"></div></div><span class="efficacy-pct" style="color:#888">23%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-wrap"><footer>
+    <div class="footer-logo">SUPPLEMENTZZ BV</div>
+    <div class="footer-links"><a href="#"><span class="en">Privacy</span><span class="nl">Privacy</span></a><a href="#"><span class="en">Terms</span><span class="nl">Voorwaarden</span></a><a href="#"><span class="en">Contact</span><span class="nl">Contact</span></a></div>
+    <div class="footer-copy en">© 2025 Supplementzz BV — Fictional demo company</div>
+    <div class="footer-copy nl">© 2025 Supplementzz BV — Fictief demobedrijf</div>
+  </footer></div>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div><div class="cookie-title en">We use cookies to improve your experience</div><div class="cookie-title nl">Wij gebruiken cookies om uw ervaring te verbeteren</div><p class="cookie-body en">Supplementzz BV uses functional and analytical cookies. We do not sell your data.</p><p class="cookie-body nl">Supplementzz BV gebruikt functionele en analytische cookies. Wij verkopen uw gegevens niet.</p></div>
+    <div class="cookie-actions"><button class="cookie-settings" onclick="dismissCookie()"><span class="en">Manage</span><span class="nl">Beheren</span></button><button class="cookie-decline" onclick="dismissCookie()"><span class="en">Decline</span><span class="nl">Weigeren</span></button><button class="cookie-accept" onclick="dismissCookie()"><span class="en">Accept all</span><span class="nl">Alles accepteren</span></button></div>
+  </div>
+</div>
+<script>
+  let qty=1,basePrice=49;
+  function setLang(l){document.getElementById('site').className='lang-'+l;document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-nl').classList.toggle('active',l==='nl')}
+  function selectPlan(el,p){document.querySelectorAll('.plan-option').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');basePrice=p;updateCart()}
+  function changeQty(d){qty=Math.max(1,Math.min(10,qty+d));document.getElementById('qtyNum').textContent=qty;updateCart()}
+  function updateCart(){document.getElementById('cartTotal').textContent='€'+(basePrice*qty)}
+  function addToCart(btn){const o=btn.innerHTML;btn.innerHTML='✓ Added!';btn.style.background='#0f6e56';setTimeout(()=>{btn.innerHTML=o;btn.style.background=''},2000)}
+  function switchTab(btn,tab){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('tab-'+tab).classList.add('active')}
+  function dismissCookie(){const b=document.getElementById('cookieBanner');b.classList.add('hidden');setTimeout(()=>b.style.display='none',400)}
+  document.querySelectorAll('.thumbnail').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.thumbnail').forEach(x=>x.classList.remove('active'));t.classList.add('active')}));
+</script>
+</body>
+</html>

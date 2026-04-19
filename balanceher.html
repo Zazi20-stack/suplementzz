@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BalanceHer Blend — Supplementzz BV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--navy:#0a1628;--pink:#993556;--pink-light:#fbeaf0;--pink-mid:#d4537e;--off-white:#f7f8fa;--text-primary:#0a1628;--text-secondary:#4a5568;--text-muted:#718096;--border:rgba(10,22,40,0.1);--font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;--accent:#993556;--accent-light:#fbeaf0;--accent-mid:#d4537e}
+    body{font-family:var(--font);background:white;color:var(--text-primary);overflow-x:hidden}
+    .en{display:block}.nl{display:none}.lang-nl .en{display:none}.lang-nl .nl{display:block}
+    span.en{display:inline}span.nl{display:none}.lang-nl span.en{display:none}.lang-nl span.nl{display:inline}
+    .trust-bar{background:var(--off-white);border-bottom:0.5px solid var(--border);padding:0 2rem;height:44px;display:flex;align-items:center;justify-content:center}
+    .trust-items{display:flex;align-items:center;gap:2.5rem;max-width:1200px;width:100%;justify-content:center}
+    .trust-item{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;white-space:nowrap}
+    .trust-item svg{width:14px;height:14px;flex-shrink:0}.trust-divider{width:1px;height:16px;background:var(--border)}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-mark{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center}
+    .logo-mark svg{width:16px;height:16px}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-size:13px;font-weight:400;color:var(--text-secondary);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--navy)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .lang-switcher{display:flex;gap:2px;background:var(--off-white);border-radius:6px;padding:3px;border:0.5px solid var(--border)}
+    .lang-btn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;padding:4px 10px;border:none;cursor:pointer;border-radius:4px;background:transparent;color:var(--text-muted);transition:all .15s}
+    .lang-btn.active{background:white;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+    .nav-cta{font-family:var(--font);font-size:13px;font-weight:500;padding:8px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+    .nav-cta:hover{background:#1a3360}
+    .breadcrumb{max-width:1200px;margin:0 auto;padding:1.25rem 2rem;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);font-family:var(--mono)}
+    .breadcrumb a{color:var(--text-muted);text-decoration:none}.breadcrumb a:hover{color:var(--navy)}.breadcrumb-sep{opacity:.4}
+    .product-hero{max-width:1200px;margin:0 auto;padding:1rem 2rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .product-image-main{background:linear-gradient(145deg,#fbeaf0 0%,#f4c0d1 60%,#ed93b1 100%);border-radius:20px;height:440px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .product-icon-large{font-size:96px;line-height:1}
+    .product-badge-dutch{position:absolute;top:16px;left:16px;background:white;border:0.5px solid var(--border);border-radius:20px;padding:5px 12px 5px 8px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;font-weight:500;color:var(--accent);letter-spacing:.06em}
+    .dot-accent{width:6px;height:6px;border-radius:50%;background:var(--accent-mid)}
+    .product-badge-patent{position:absolute;bottom:16px;right:16px;background:var(--navy);border-radius:8px;padding:6px 12px;font-family:var(--mono);font-size:9px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase}
+    .thumbnail-strip{display:flex;gap:10px;margin-top:12px}
+    .thumbnail{flex:1;height:72px;border-radius:10px;border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;transition:border-color .2s;background:var(--off-white)}
+    .thumbnail.active{border-color:var(--accent-mid);border-width:1.5px}
+    .product-category{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;margin-bottom:.75rem}
+    .product-title{font-size:2.2rem;font-weight:300;letter-spacing:-.03em;color:var(--navy);line-height:1.1;margin-bottom:.5rem}
+    .product-subtitle{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.6;margin-bottom:1.5rem}
+    .rating-row{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+    .stars-sm{display:flex;gap:2px}.star-sm{width:13px;height:13px}
+    .rating-text{font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+    .price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:.5rem}
+    .price-main{font-family:var(--mono);font-size:2rem;font-weight:500;color:var(--navy)}
+    .price-period{font-size:13px;color:var(--text-muted)}.price-note{font-size:12px;color:var(--text-muted);margin-bottom:1.5rem}
+    .plan-selector{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1.5rem}
+    .plan-option{border:0.5px solid var(--border);border-radius:10px;padding:12px;cursor:pointer;text-align:center;transition:border-color .2s,background .2s;position:relative}
+    .plan-option.selected{border-color:var(--accent-mid);border-width:1.5px;background:var(--accent-light)}
+    .plan-option:hover:not(.selected){border-color:rgba(10,22,40,.2)}
+    .plan-best{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--navy);color:white;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;padding:2px 10px;border-radius:10px;white-space:nowrap}
+    .plan-label{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+    .plan-price{font-size:15px;font-weight:500;color:var(--navy);font-family:var(--mono)}
+    .plan-save{font-size:10px;color:var(--accent);font-weight:500;margin-top:2px}
+    .plan-total{font-size:10px;color:var(--text-muted);margin-top:1px}
+    .qty-row{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+    .qty-label{font-size:13px;color:var(--text-secondary)}
+    .qty-ctrl{display:flex;align-items:center;border:0.5px solid var(--border);border-radius:8px;overflow:hidden}
+    .qty-btn{width:36px;height:36px;border:none;background:var(--off-white);cursor:pointer;font-size:16px;color:var(--navy);transition:background .15s}
+    .qty-btn:hover{background:#e8e8e8}
+    .qty-num{width:40px;text-align:center;font-family:var(--mono);font-size:14px;font-weight:500;color:var(--navy);border-left:0.5px solid var(--border);border-right:0.5px solid var(--border);height:36px;line-height:36px}
+    .btn-cart{width:100%;padding:16px;background:var(--navy);color:white;border:none;border-radius:12px;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:500;transition:background .2s,transform .15s;margin-bottom:10px}
+    .btn-cart:hover{background:#1a3360;transform:translateY(-1px)}
+    .btn-wishlist{width:100%;padding:14px;background:transparent;color:var(--text-secondary);border:0.5px solid var(--border);border-radius:12px;cursor:pointer;font-family:var(--font);font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:1.5rem;transition:border-color .2s,color .2s}
+    .btn-wishlist:hover{border-color:var(--navy);color:var(--navy)}
+    .trust-pills{display:flex;gap:8px;flex-wrap:wrap}
+    .trust-pill{display:flex;align-items:center;gap:5px;background:var(--off-white);border:0.5px solid var(--border);border-radius:20px;padding:5px 10px;font-size:11px;color:var(--text-muted);font-family:var(--mono)}
+    .trust-pill svg{width:12px;height:12px}
+    .tabs-section{max-width:1200px;margin:0 auto;padding:0 2rem 4rem}
+    .tabs-nav{display:flex;border-bottom:0.5px solid var(--border);margin-bottom:3rem}
+    .tab-btn{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:1rem 1.5rem;border:none;background:none;cursor:pointer;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:color .2s,border-color .2s}
+    .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
+    .tab-panel{display:none}.tab-panel.active{display:block}
+    .ingredients-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-bottom:2rem}
+    .ingredient-card{border:0.5px solid var(--border);border-radius:14px;padding:1.25rem;position:relative;overflow:hidden}
+    .ingredient-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent-mid)}
+    .ingredient-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;gap:8px;flex-wrap:wrap}
+    .ingredient-name{font-size:15px;font-weight:500;color:var(--navy)}
+    .ingredient-dose{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent);background:var(--accent-light);padding:3px 8px;border-radius:4px;flex-shrink:0}
+    .ingredient-role{font-size:11px;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono);margin-bottom:.4rem}
+    .ingredient-desc{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.65}
+    .ingredient-evidence{display:inline-flex;align-items:center;gap:4px;margin-top:.6rem;font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--accent);background:var(--accent-light);padding:3px 8px;border-radius:4px}
+    .dosage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem}
+    .dosage-card{background:var(--off-white);border-radius:14px;padding:1.5rem;text-align:center}
+    .dosage-icon{width:48px;height:48px;border-radius:12px;background:white;border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:22px}
+    .dosage-label{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+    .dosage-value{font-size:16px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .dosage-note{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.5}
+    .warning-box{background:#faeeda;border:0.5px solid rgba(186,117,23,.2);border-radius:12px;padding:1rem 1.25rem;display:flex;align-items:flex-start;gap:10px;margin-bottom:2rem}
+    .warning-text{font-size:13px;font-weight:300;color:#633806;line-height:1.6}
+    .timeline-box{background:var(--off-white);border-radius:14px;padding:1.5rem 2rem;margin-bottom:2rem}
+    .timeline-row{display:grid;grid-template-columns:80px 1fr;gap:1rem;align-items:start;padding:.75rem 0;border-bottom:0.5px solid var(--border)}
+    .timeline-row:last-child{border-bottom:none}
+    .timeline-week{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent);padding-top:2px}
+    .timeline-text{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.6}
+    .science-intro{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.75;max-width:700px;margin-bottom:2.5rem}
+    .science-disclaimer{background:#f1efe8;border:0.5px solid rgba(136,135,128,.2);border-radius:10px;padding:.875rem 1.125rem;font-size:12px;font-weight:300;color:#5f5e5a;line-height:1.6;margin-bottom:2.5rem}
+    .studies-list{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+    .study-card{border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;display:grid;grid-template-columns:36px 1fr;gap:1rem;align-items:start}
+    .study-num{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.06em;margin-top:2px}
+    .study-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .study-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);margin-bottom:.5rem}
+    .study-finding{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.65}
+    .study-limitation{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.5;margin-top:.4rem;font-style:italic}
+    .study-badges{display:flex;gap:6px;margin-top:.5rem;flex-wrap:wrap}
+    .study-badge{display:inline-block;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+    .badge-rct{background:#e1f5ee;color:#0f6e56}.badge-review{background:var(--accent-light);color:var(--accent)}.badge-obs{background:#f1efe8;color:#5f5e5a}
+    .efficacy-section{margin-bottom:2rem}
+    .efficacy-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .efficacy-subtitle{font-size:12px;font-weight:300;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.5}
+    .efficacy-row{display:flex;align-items:center;gap:12px;margin-bottom:.75rem}
+    .efficacy-label{font-size:13px;color:var(--text-secondary);width:240px;flex-shrink:0}
+    .efficacy-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+    .efficacy-fill{height:100%;background:var(--accent-mid);border-radius:4px}
+    .efficacy-pct{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent);width:36px;text-align:right}
+    .mechanism-box{background:var(--navy);border-radius:14px;padding:1.75rem 2rem;margin-bottom:2rem;color:white}
+    .mechanism-title{font-size:15px;font-weight:500;margin-bottom:1rem}
+    .mechanism-steps{display:flex;flex-direction:column;gap:.875rem}
+    .mechanism-step{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start}
+    .mechanism-dot{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.6);margin-top:1px;flex-shrink:0}
+    .mechanism-text{font-size:13px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.6}
+    .mechanism-text strong{font-weight:500;color:white}
+    .footer-wrap{border-top:0.5px solid var(--border);margin-top:2rem}
+    footer{max-width:1200px;margin:0 auto;padding:2rem;display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text-muted);letter-spacing:.06em}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:12px;color:var(--text-muted);text-decoration:none}
+    .footer-copy{font-size:12px;color:var(--text-muted)}
+    .cookie-banner{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 3rem);max-width:900px;background:white;border:0.5px solid var(--border);border-radius:16px;padding:1.25rem 1.75rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;z-index:999;box-shadow:0 4px 24px rgba(10,22,40,0.08);transition:opacity .3s,transform .3s}
+    .cookie-banner.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+    .cookie-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .cookie-body{font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.6}
+    .cookie-body a{color:#1d9e75;text-decoration:none}
+    .cookie-actions{display:flex;gap:8px;flex-shrink:0}
+    .cookie-accept{font-family:var(--font);font-size:12px;font-weight:500;padding:9px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+    .cookie-accept:hover{background:#1a3360}
+    .cookie-decline{font-family:var(--font);font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:0.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s}
+    .cookie-decline:hover{border-color:var(--navy);color:var(--navy)}
+    .cookie-settings{font-family:var(--font);font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:none;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+    @media(max-width:900px){.product-hero{grid-template-columns:1fr;gap:2rem}.ingredients-grid,.dosage-grid{grid-template-columns:1fr}.plan-selector{grid-template-columns:1fr 1fr}.nav-links{display:none}.cookie-banner{grid-template-columns:1fr}.cookie-actions{flex-wrap:wrap}footer{flex-direction:column;gap:1rem;text-align:center}}
+  </style>
+</head>
+<body>
+<div id="site" class="lang-en">
+  <div class="trust-bar">
+    <div class="trust-items">
+      <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5H13L9.5 7.6 10.8 12 7 9.5 3.2 12 4.5 7.6 1 5H5.2L7 1Z" stroke="#d4537e" stroke-width="1.1" stroke-linejoin="round"/></svg><span class="en">Dutch quality certified</span><span class="nl">Nederlandse kwaliteit gecertificeerd</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><rect x="2" y="4" width="10" height="8" rx="1.5" stroke="#718096" stroke-width="1.1"/><path d="M5 4V3a2 2 0 014 0v1" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/></svg><span class="en">Secure &amp; encrypted payment</span><span class="nl">Veilige &amp; versleutelde betaling</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#d4537e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">90-day money-back guarantee</span><span class="nl">90 dagen niet-goed-geld-terug</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v6l3 2" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/><circle cx="7" cy="7" r="6" stroke="#718096" stroke-width="1.1"/></svg><span class="en">Free shipping from €75</span><span class="nl">Gratis verzending vanaf €75</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M1 10l3-6 3 4 2-2 4 4" stroke="#718096" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Patented formulation</span><span class="nl">Gepatenteerde formule</span></div>
+    </div>
+  </div>
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.2"/><path d="M8 4v8M5 6.5h6M5 9.5h6" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      SUPPLEMENTZZ
+    </a>
+    <ul class="nav-links">
+      <li><a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a></li>
+      <li><a href="index.html#science"><span class="en">Science</span><span class="nl">Wetenschap</span></a></li>
+      <li><a href="#"><span class="en">About</span><span class="nl">Over ons</span></a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right"><a href="cart.html" style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--text-secondary);text-decoration:none;padding:6px 10px;border:0.5px solid var(--border);border-radius:8px;" onmouseover="this.style.color='var(--navy)'" onmouseout="this.style.color='var(--text-secondary)'"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1h2l1.5 7h7l1-5H4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="12" r="1" fill="currentColor"/><circle cx="11" cy="12" r="1" fill="currentColor"/></svg>Cart</a>
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button>
+      </div>
+      <button class="nav-cta"><span class="en">Shop now</span><span class="nl">Nu winkelen</span></button>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span class="breadcrumb-sep">›</span>
+    <a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a><span class="breadcrumb-sep">›</span>
+    <span style="color:var(--navy)">BalanceHer Blend</span>
+  </div>
+
+  <div class="product-hero">
+    <div>
+      <div class="product-image-main">
+        <div class="product-badge-dutch"><div class="dot-accent"></div><span class="en">Made in the Netherlands</span><span class="nl">Gemaakt in Nederland</span></div>
+        <div class="product-icon-large">🌸</div>
+        <div class="product-badge-patent">Patented formula · NL2031849</div>
+      </div>
+      <div class="thumbnail-strip">
+        <div class="thumbnail active">🌸</div><div class="thumbnail">💊</div><div class="thumbnail">📋</div><div class="thumbnail">🔬</div>
+      </div>
+    </div>
+    <div>
+      <div class="product-category"><span class="en">Female hormones · SKU BH-003</span><span class="nl">Vrouwelijke hormonen · SKU BH-003</span></div>
+      <h1 class="product-title">BalanceHer<br>Blend</h1>
+      <p class="product-subtitle en">A clinically-informed formula supporting female hormonal balance, cycle regularity, and mood stability. Formulated in the Netherlands using evidence-backed botanicals and targeted micronutrients.</p>
+      <p class="product-subtitle nl">Een klinisch onderbouwde formule die vrouwelijke hormoonbalans, cyclusregelmaat en stemmingsstabiliteit ondersteunt. Geformuleerd in Nederland met evidence-based botanische stoffen en gerichte micronutriënten.</p>
+      <div class="rating-row">
+        <div class="stars-sm">
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#d4537e"/></svg>
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#d4537e"/></svg>
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#d4537e"/></svg>
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#d4537e"/></svg>
+          <svg class="star-sm" viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5" fill="#888780"/></svg>
+        </div>
+        <span class="rating-text">4.6 · 728 reviews</span>
+      </div>
+      <div class="price-row"><span class="price-main" id="priceDisplay">€52</span><span class="price-period" id="periodDisplay">/ <span class="en">month</span><span class="nl">maand</span></span></div>
+      <p class="price-note" id="priceNote"><span class="en">Free shipping · Cancel anytime</span><span class="nl">Gratis verzending · Altijd opzegbaar</span></p>
+      <div class="plan-selector">
+        <div class="plan-option selected" onclick="selectPlan(this,52)"><div class="plan-label"><span class="en">1 month</span><span class="nl">1 maand</span></div><div class="plan-price">€52/mo</div><div class="plan-save">&nbsp;</div><div class="plan-total">&nbsp;</div></div>
+        <div class="plan-option" onclick="selectPlan(this,47)"><div class="plan-label"><span class="en">3 months</span><span class="nl">3 maanden</span></div><div class="plan-price">€47/mo</div><div class="plan-save"><span class="en">Save 10%</span><span class="nl">Bespaar 10%</span></div><div class="plan-total">€141 <span class="en">quarterly</span><span class="nl">per kwartaal</span></div></div>
+        <div class="plan-option" onclick="selectPlan(this,42)"><div class="plan-label"><span class="en">6 months</span><span class="nl">6 maanden</span></div><div class="plan-price">€42/mo</div><div class="plan-save"><span class="en">Save 19%</span><span class="nl">Bespaar 19%</span></div><div class="plan-total">€252 <span class="en">bi-annually</span><span class="nl">per half jaar</span></div></div>
+        <div class="plan-option" style="padding-top:20px" onclick="selectPlan(this,35)"><div class="plan-best"><span class="en">Best value</span><span class="nl">Beste waarde</span></div><div class="plan-label"><span class="en">12 months</span><span class="nl">12 maanden</span></div><div class="plan-price">€35/mo</div><div class="plan-save"><span class="en">Save 33%</span><span class="nl">Bespaar 33%</span></div><div class="plan-total">€420 <span class="en">annually</span><span class="nl">per jaar</span></div></div>
+      </div>
+      <div class="qty-row">
+        <span class="qty-label"><span class="en">Quantity</span><span class="nl">Aantal</span></span>
+        <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(-1)">−</button><div class="qty-num" id="qtyNum">1</div><button class="qty-btn" onclick="changeQty(1)">+</button></div>
+      </div>
+      <button class="btn-cart" onclick="addToCart(this)"><span class="en">Add to cart</span><span class="nl">In winkelwagen</span> — <span id="cartTotal">€52</span></button>
+      <button class="btn-wishlist"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S2 9.5 2 5.5A3.5 3.5 0 018 3a3.5 3.5 0 016 2.5c0 4-6 8-6 8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="en">Save to wishlist</span><span class="nl">Opslaan in verlanglijst</span></button>
+      <div class="trust-pills">
+        <div class="trust-pill"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="#d4537e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">90-day guarantee</span><span class="nl">90 dagen garantie</span></div>
+        <div class="trust-pill"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1L7.3 4H11L8.4 5.9 9.3 9 6 7.2 2.7 9 3.6 5.9 1 4H4.7L6 1Z" stroke="#d4537e" stroke-width="1" stroke-linejoin="round"/></svg><span class="en">Dutch certified</span><span class="nl">Nederlands gecertificeerd</span></div>
+        <div class="trust-pill"><svg viewBox="0 0 12 12" fill="none"><rect x="1" y="3" width="10" height="7" rx="1.5" stroke="#718096" stroke-width="1"/><path d="M4 3V2a2 2 0 014 0v1" stroke="#718096" stroke-width="1" stroke-linecap="round"/></svg><span class="en">Secure payment</span><span class="nl">Veilige betaling</span></div>
+        <div class="trust-pill"><svg viewBox="0 0 12 12" fill="none"><path d="M1 9l2.5-5 2.5 3 1.5-1.5L11 9" stroke="#718096" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Free shipping</span><span class="nl">Gratis verzending</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'ingredients')"><span class="en">Ingredients</span><span class="nl">Ingrediënten</span></button>
+      <button class="tab-btn" onclick="switchTab(this,'howto')"><span class="en">How to use</span><span class="nl">Gebruik</span></button>
+      <button class="tab-btn" onclick="switchTab(this,'science')"><span class="en">The science</span><span class="nl">De wetenschap</span></button>
+    </div>
+
+    <div class="tab-panel active" id="tab-ingredients">
+      <div class="ingredients-grid">
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Vitex Agnus-Castus (Chaste Tree)</span><span class="ingredient-dose">400 mg</span></div><div class="ingredient-role en">Progesterone &amp; LH support</div><div class="ingredient-role nl">Progesteron- &amp; LH-ondersteuning</div><p class="ingredient-desc en">Vitex acts on dopamine D2 receptors in the pituitary, suppressing prolactin secretion. Elevated prolactin disrupts the luteal phase by inhibiting LH surge and progesterone production. By normalising prolactin, Vitex supports more robust ovulation and a longer, hormonally adequate luteal phase — reducing PMS severity and cycle irregularity. Clinical effects typically appear after 3 full menstrual cycles.</p><p class="ingredient-desc nl">Vitex werkt op dopamine D2-receptoren in de hypofyse, waardoor de prolactineafscheiding wordt onderdrukt. Verhoogd prolactine verstoort de luteale fase door de LH-piek en progesteronproductie te remmen. Door prolactine te normaliseren, ondersteunt Vitex een robuustere ovulatie en een langere luteale fase.</p><div class="ingredient-evidence en">Multiple RCTs available</div><div class="ingredient-evidence nl">Meerdere RCT's beschikbaar</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Maca Root Extract (Lepidium meyenii)</span><span class="ingredient-dose">1,500 mg</span></div><div class="ingredient-role en">Endocrine adaptogen</div><div class="ingredient-role nl">Endocriene adaptogeen</div><p class="ingredient-desc en">Maca's glucosinolates and macamides act on the hypothalamus and pituitary without directly binding hormone receptors — classifying it as an endocrine adaptogen rather than a phytoestrogen. RCTs in perimenopausal women show improvements in oestrogen levels, FSH normalisation, and reductions in menopausal symptom scores. Crucially, it does not stimulate oestrogen-dependent tissue.</p><p class="ingredient-desc nl">Maca's glucosinolaten en macamiden werken op de hypothalamus en hypofyse zonder direct hormoonreceptoren te binden — waardoor het eerder een endocrien adaptogeen is dan een fyto-oestrogeen. RCT's tonen verbeteringen in oestrogeenniveaus en FSH-normalisatie.</p><div class="ingredient-evidence en">RCT evidence available</div><div class="ingredient-evidence nl">RCT-bewijs beschikbaar</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Evening Primrose Oil</span><span class="ingredient-dose">1,000 mg</span></div><div class="ingredient-role en">GLA &amp; prostaglandin balance</div><div class="ingredient-role nl">GLA &amp; prostaglandinebalans</div><p class="ingredient-desc en">Rich in gamma-linolenic acid (GLA, 8–10%), the direct precursor to prostaglandin E1 (PGE1). PGE1 has anti-inflammatory properties and modulates uterine contractility. Excess PGE2 from arachidonic acid causes prostaglandin-mediated dysmenorrhoea. By shifting prostaglandin balance toward the E1 series, GLA reduces cramping severity and cyclical breast tenderness.</p><p class="ingredient-desc nl">Rijk aan gamma-linoleenzuur (GLA, 8-10%), de directe voorloper van prostaglandine E1 (PGE1). PGE1 heeft ontstekingsremmende eigenschappen en moduleert de baarmoedercontractiliteit. Door de prostaglandinebalans te verschuiven, vermindert GLA krampernst en cyclische borspijn.</p><div class="ingredient-evidence en">Small RCTs available</div><div class="ingredient-evidence nl">Kleine RCT's beschikbaar</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Magnesium Bisglycinate</span><span class="ingredient-dose">250 mg</span></div><div class="ingredient-role en">Mood, cramping &amp; sleep</div><div class="ingredient-role nl">Stemming, krampen &amp; slaap</div><p class="ingredient-desc en">Magnesium plays a central role in GABA-A receptor modulation. In the luteal phase, hormone fluctuations reduce GABA sensitivity, contributing to anxiety, irritability, and sleep disruption. Magnesium supplementation (200–400 mg/day) significantly reduces PMS mood symptoms in multiple RCTs and relaxes uterine smooth muscle, reducing cramping. Bisglycinate is chosen for superior bioavailability.</p><p class="ingredient-desc nl">Magnesium speelt een centrale rol bij GABA-A-receptormodulatie. In de luteale fase verminderen hormoonschommelingen de GABA-gevoeligheid. Magnesiumsuppletie (200-400 mg/dag) vermindert significant PMS-stemmingssymptomen in meerdere RCT's.</p><div class="ingredient-evidence en">Multiple RCTs available</div><div class="ingredient-evidence nl">Meerdere RCT's beschikbaar</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Vitamin B6 (Pyridoxine HCl)</span><span class="ingredient-dose">50 mg</span></div><div class="ingredient-role en">Serotonin &amp; progesterone cofactor</div><div class="ingredient-role nl">Serotonine- &amp; progesteroncofactor</div><p class="ingredient-desc en">B6 is an essential cofactor for converting 5-HTP to serotonin. Low serotonin in the luteal phase is strongly implicated in PMS and PMDD mood symptoms. B6 also supports progesterone receptor activity. Meta-analyses show 50–100 mg/day significantly improves PMS mood symptoms. Our 50 mg dose is effective while remaining below the tolerable upper intake level of 100 mg/day for long-term use.</p><p class="ingredient-desc nl">B6 is een essentieel cofactor voor de omzetting van 5-HTP naar serotonine. Lage serotoninespiegels in de luteale fase zijn sterk geassocieerd met PMS en PMDD. Meta-analyses tonen aan dat 50-100 mg/dag PMS-stemmingssymptomen significant verbetert.</p><div class="ingredient-evidence en">Meta-analysis evidence</div><div class="ingredient-evidence nl">Meta-analyse bewijs</div></div>
+        <div class="ingredient-card"><div class="ingredient-header"><span class="ingredient-name">Folate (Methylfolate, 5-MTHF)</span><span class="ingredient-dose">400 mcg</span></div><div class="ingredient-role en">Methylation &amp; cycle health</div><div class="ingredient-role nl">Methylering &amp; cyclusgezondheid</div><p class="ingredient-desc en">We use methylfolate (the active form) rather than synthetic folic acid. Up to 40% of women carry MTHFR gene variants reducing their ability to convert folic acid — making the pre-methylated form more reliable. Folate is essential for DNA synthesis in rapidly dividing endometrial cells, oestrogen methylation and clearance, and cycle regularity. Particularly important for women of reproductive age.</p><p class="ingredient-desc nl">We gebruiken methylfolaat (de actieve vorm) in plaats van synthetisch foliumzuur. Tot 40% van de vrouwen draagt MTHFR-genvarianten die hun vermogen om foliumzuur om te zetten verminderen — waardoor de voorgemethyleerde vorm betrouwbaarder is.</p><div class="ingredient-evidence en">Mechanistic + observational</div><div class="ingredient-evidence nl">Mechanistisch + observationeel</div></div>
+      </div>
+      <div style="background:#f1efe8;border-radius:12px;padding:1rem 1.25rem;font-size:12px;font-weight:300;color:#5f5e5a;line-height:1.6">
+        <span class="en">BalanceHer Blend is designed for adult women experiencing cyclical hormonal symptoms. It is not a contraceptive. Women with PCOS, endometriosis, or hormone-sensitive conditions should consult their gynaecologist before use. Not recommended during pregnancy.</span>
+        <span class="nl">BalanceHer Blend is ontworpen voor volwassen vrouwen met cyclische hormonale symptomen. Het is geen anticonceptiemiddel. Vrouwen met PCOS, endometriose of hormoonafhankelijke aandoeningen moeten hun gynaecoloog raadplegen voor gebruik. Niet aanbevolen tijdens zwangerschap.</span>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-howto">
+      <div class="dosage-grid">
+        <div class="dosage-card"><div class="dosage-icon">💊</div><div class="dosage-label"><span class="en">Daily dose</span><span class="nl">Dagelijkse dosis</span></div><div class="dosage-value">2 <span class="en">capsules</span><span class="nl">capsules</span></div><p class="dosage-note en">Take daily throughout the entire cycle — not just during the luteal phase. Consistent use supports better outcomes.</p><p class="dosage-note nl">Neem dagelijks gedurende de hele cyclus — niet alleen tijdens de luteale fase. Consistent gebruik ondersteunt betere resultaten.</p></div>
+        <div class="dosage-card"><div class="dosage-icon">🍽️</div><div class="dosage-label"><span class="en">With food</span><span class="nl">Met eten</span></div><div class="dosage-value"><span class="en">With a meal</span><span class="nl">Met een maaltijd</span></div><p class="dosage-note en">Evening primrose oil is fat-soluble; taking with food significantly improves GLA absorption and reduces nausea risk.</p><p class="dosage-note nl">Teunisbloemolie is vetoplosbaar; inname met voedsel verbetert de GLA-opname significant en vermindert het risico op misselijkheid.</p></div>
+        <div class="dosage-card"><div class="dosage-icon">📅</div><div class="dosage-label"><span class="en">Timeline</span><span class="nl">Tijdlijn</span></div><div class="dosage-value">3+ <span class="en">cycles</span><span class="nl">cycli</span></div><p class="dosage-note en">Vitex requires 3 complete menstrual cycles to produce meaningful hormonal effects. Patience is essential.</p><p class="dosage-note nl">Vitex heeft 3 volledige menstruatiecycli nodig om betekenisvolle hormonale effecten te produceren. Geduld is essentieel.</p></div>
+      </div>
+      <div class="warning-box">
+        <div style="flex-shrink:0;margin-top:1px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14.5 13H1.5L8 2Z" stroke="#854f0b" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 6v4M8 11.5v.5" stroke="#854f0b" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <p class="warning-text en">Not recommended during pregnancy or breastfeeding. Vitex agnus-castus may interact with dopaminergic medications and hormonal contraceptives — consult your GP if you take these. Women with hormone-sensitive conditions should seek medical advice before use. Do not exceed the recommended B6 dose — chronic high doses above 100 mg/day are associated with peripheral neuropathy.</p>
+        <p class="warning-text nl">Niet aanbevolen tijdens zwangerschap of borstvoeding. Vitex agnus-castus kan interageren met dopaminerge medicatie en hormonale anticonceptiva — raadpleeg uw huisarts als u deze gebruikt. Vrouwen met hormoonafhankelijke aandoeningen dienen medisch advies te vragen voor gebruik.</p>
+      </div>
+      <div class="timeline-box">
+        <div style="font-size:15px;font-weight:500;color:var(--navy);margin-bottom:1rem"><span class="en">What to expect over time</span><span class="nl">Wat u in de loop van de tijd kunt verwachten</span></div>
+        <div class="timeline-row"><div class="timeline-week"><span class="en">Cycle 1</span><span class="nl">Cyclus 1</span></div><p class="timeline-text en">Magnesium's effects on muscle relaxation and sleep quality may be noticeable within the first luteal phase. B6 can improve mood symptoms from the first cycle. No significant hormonal changes expected yet from Vitex.</p><p class="timeline-text nl">De effecten van magnesium op spierontspanning en slaapkwaliteit kunnen al in de eerste luteale fase merkbaar zijn. B6 kan stemmingssymptomen al verbeteren vanaf de eerste cyclus.</p></div>
+        <div class="timeline-row"><div class="timeline-week"><span class="en">Cycle 2</span><span class="nl">Cyclus 2</span></div><p class="timeline-text en">Evening primrose GLA levels build up in cell membranes over 4–6 weeks. Dysmenorrhoea and breast tenderness may begin to improve. Maca's adaptogenic effects start to emerge.</p><p class="timeline-text nl">GLA-niveaus van teunisbloem bouwen zich op in celmembranen gedurende 4-6 weken. Dysmenorroe en borspijn kunnen beginnen te verbeteren. De adaptogene effecten van maca beginnen naar voren te komen.</p></div>
+        <div class="timeline-row"><div class="timeline-week"><span class="en">Cycle 3</span><span class="nl">Cyclus 3</span></div><p class="timeline-text en">Vitex reaches meaningful prolactin-modulating activity by this point. Cycle regularity, luteal phase length, and overall PMS severity are typically measurably improved by the end of the third cycle.</p><p class="timeline-text nl">Vitex bereikt op dit punt een betekenisvolle prolactinmodulatieactiviteit. Cyclusregelmaat, luteale faselengte en algehele PMS-ernst zijn doorgaans meetbaar verbeterd aan het einde van de derde cyclus.</p></div>
+        <div class="timeline-row"><div class="timeline-week"><span class="en">Cycle 4+</span><span class="nl">Cyclus 4+</span></div><p class="timeline-text en">Sustained and compounding improvements with continued use. We recommend a minimum 6-cycle course for a thorough assessment. If no improvement by cycle 3, contact us to activate your 90-day guarantee.</p><p class="timeline-text nl">Aanhoudende en cumulatieve verbeteringen bij voortgezet gebruik. We raden een minimumkuur van 6 cycli aan voor een grondige beoordeling. Als er geen verbetering is na cyclus 3, neem dan contact met ons op om uw 90-dagengarantie te activeren.</p></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-science">
+      <p class="science-intro en">BalanceHer Blend targets four distinct mechanisms involved in female hormonal symptoms: prolactin regulation, endocrine adaptation, prostaglandin balance, and neurotransmitter support. We present the evidence for each transparently, including study limitations.</p>
+      <p class="science-intro nl">BalanceHer Blend richt zich op vier afzonderlijke mechanismen bij vrouwelijke hormonale symptomen: prolactineregulatie, endocriene aanpassing, prostaglandinebalans en neurotransmitterondersteuning. We presenteren het bewijs voor elk transparant, inclusief beperkingen van de studie.</p>
+      <div class="science-disclaimer en">Studies cited below were not conducted on BalanceHer Blend specifically. Evidence quality varies. RCTs provide strongest evidence; mechanistic evidence is supportive but not conclusive. Individual hormonal profiles vary significantly. This product does not diagnose, treat, or cure any medical condition.</div>
+      <div class="science-disclaimer nl">De hieronder geciteerde studies zijn niet specifiek uitgevoerd op BalanceHer Blend. De bewijskwaliteit varieert. RCT's bieden het sterkste bewijs; mechanistisch bewijs is ondersteunend maar niet doorslaggevend. Individuele hormonale profielen variëren aanzienlijk.</div>
+      <div class="mechanism-box">
+        <div class="mechanism-title en">Why hormonal symptoms occur — and our approach</div>
+        <div class="mechanism-title nl">Waarom hormonale symptomen optreden — en onze aanpak</div>
+        <div class="mechanism-steps">
+          <div class="mechanism-step"><div class="mechanism-dot">1</div><p class="mechanism-text en"><strong>Luteal phase insufficiency:</strong> Elevated prolactin suppresses the LH surge, leading to inadequate progesterone in the luteal phase. This oestrogen-progesterone imbalance drives most PMS symptoms — mood shifts, bloating, breast tenderness, and cycle irregularity.</p><p class="mechanism-text nl"><strong>Luteale fase-insufficiëntie:</strong> Verhoogd prolactine onderdrukt de LH-piek, wat leidt tot onvoldoende progesteron in de luteale fase. Dit oestrogeen-progesteronimbalans veroorzaakt de meeste PMS-symptomen.</p></div>
+          <div class="mechanism-step"><div class="mechanism-dot">2</div><p class="mechanism-text en"><strong>Prostaglandin imbalance:</strong> Excess arachidonic acid-derived PGE2 causes uterine hypercontractility (cramping) and systemic inflammation. This is a key driver of dysmenorrhoea and is distinct from the hormonal axis disruption above.</p><p class="mechanism-text nl"><strong>Prostaglandine-onevenwicht:</strong> Teveel arachidonzuur-afgeleid PGE2 veroorzaakt baarmoederhypercontractiliteit (krampen) en systemische ontsteking. Dit is een belangrijke oorzaak van dysmenorroe.</p></div>
+          <div class="mechanism-step"><div class="mechanism-dot">3</div><p class="mechanism-text en"><strong>Our approach:</strong> Vitex normalises prolactin via dopaminergic action. Maca adapts the hypothalamic-pituitary axis. Evening primrose shifts prostaglandin balance. Magnesium and B6 support GABA and serotonin pathways. Methylfolate supports oestrogen clearance methylation.</p><p class="mechanism-text nl"><strong>Onze aanpak:</strong> Vitex normaliseert prolactine via dopaminerge werking. Maca past de hypothalamus-hypofyseas aan. Teunisbloem verschuift de prostaglandinebalans. Magnesium en B6 ondersteunen GABA- en serotoninepadwegen.</p></div>
+        </div>
+      </div>
+      <div class="studies-list">
+        <div class="study-card"><div class="study-num">01</div><div><div class="study-title en">Vitex agnus-castus extracts for female reproductive disorders: a systematic review</div><div class="study-title nl">Vitex agnus-castus extracten voor vrouwelijke reproductieve aandoeningen: een systematische review</div><div class="study-meta">Planta Medica · van Die et al., 2013 · Systematic review, 12 RCTs</div><p class="study-finding en">A systematic review of 12 RCTs found consistent evidence supporting Vitex for PMS, hyperprolactinaemia, and cycle irregularity. The mechanism — dopamine D2 receptor agonism reducing prolactin — is well characterised. Effect sizes were moderate and superior to placebo across multiple symptom domains.</p><p class="study-finding nl">Een systematische review van 12 RCT's vond consistent bewijs voor Vitex bij PMS, hyperprolactinemie en cyclusonregelmatigheid. Het mechanisme — dopamine D2-receptoragonisme dat prolactine vermindert — is goed gekarakteriseerd.</p><p class="study-limitation en">Limitation: Heterogeneity across trials in extract standardisation, dose, and outcome measures. Long-term safety data beyond 3 months is limited.</p><p class="study-limitation nl">Beperking: Heterogeniteit tussen proeven in extractstandaardisatie, dosis en uitkomstmaten. Langetermijn veiligheidsgegevens na 3 maanden zijn beperkt.</p><div class="study-badges"><span class="study-badge badge-review"><span class="en">Systematic review of RCTs</span><span class="nl">Systematische review van RCT's</span></span></div></div></div>
+        <div class="study-card"><div class="study-num">02</div><div><div class="study-title en">Randomised double-blind placebo-controlled trial of maca in perimenopausal women</div><div class="study-title nl">Gerandomiseerde dubbelblinde placebogecontroleerde studie van maca bij perimenopausale vrouwen</div><div class="study-meta">Menopause · Stojanovska et al., 2015 · RCT, n=29</div><p class="study-finding en">Perimenopausal women receiving maca for 6 weeks showed significant increases in oestradiol, reductions in FSH, and improvements on the Greene Climacteric Scale versus placebo. No oestrogenic activity was detected in uterine or breast tissue — consistent with a non-phytoestrogenic mechanism.</p><p class="study-finding nl">Perimenopausale vrouwen die maca kregen, vertoonden significante stijgingen in oestradiol, verminderingen in FSH en verbeteringen op de Greene Climacteric Scale versus placebo. Er werd geen oestrogene activiteit gedetecteerd in baarmoeder- of borstweefsel.</p><p class="study-limitation en">Limitation: Very small sample (n=29). Short duration. Focused on perimenopausal women — generalisability to younger women with PMS is limited.</p><p class="study-limitation nl">Beperking: Zeer kleine steekproef (n=29). Korte duur. Gericht op perimenopausale vrouwen — generaliseerbaarheid naar jongere vrouwen met PMS is beperkt.</p><div class="study-badges"><span class="study-badge badge-rct">RCT</span></div></div></div>
+        <div class="study-card"><div class="study-num">03</div><div><div class="study-title en">Vitamin B6 in the treatment of premenstrual syndrome: a meta-analysis</div><div class="study-title nl">Vitamine B6 bij de behandeling van het premenstrueel syndroom: een meta-analyse</div><div class="study-meta">BJOG · Wyatt et al., 1999 · Meta-analysis, 9 trials, n=940</div><p class="study-finding en">Pooled analysis found that B6 up to 100 mg/day was twice as likely as placebo to improve overall PMS symptoms (OR 2.32, 95% CI 1.95–2.54) and specifically depressive symptoms. The effect on physical PMS symptoms was less pronounced.</p><p class="study-finding nl">Gepoolde analyse toonde aan dat B6 tot 100 mg/dag tweemaal zo waarschijnlijk als placebo was om algehele PMS-symptomen te verbeteren (OR 2,32, 95% BI 1,95-2,54), met name depressieve symptomen.</p><p class="study-limitation en">Limitation: Trial quality was variable. Several studies used different outcome measures. Optimal dose not definitively established.</p><p class="study-limitation nl">Beperking: De kwaliteit van de proeven varieerde. Verschillende studies gebruikten verschillende uitkomstmaten.</p><div class="study-badges"><span class="study-badge badge-review"><span class="en">Meta-analysis</span><span class="nl">Meta-analyse</span></span></div></div></div>
+        <div class="study-card"><div class="study-num">04</div><div><div class="study-title en">Magnesium supplementation for premenstrual symptoms: a systematic review</div><div class="study-title nl">Magnesiumsuppletie voor premenstruele symptomen: een systematische review</div><div class="study-meta">Magnesium Research · Parazzini et al., 2017 · Systematic review, 7 trials</div><p class="study-finding en">Seven trials found consistent improvements in mood-related PMS symptoms with magnesium (200–400 mg/day). Three trials also reported significant reductions in bloating and cramping. Bisglycinate showed the best GI tolerability profile.</p><p class="study-finding nl">Zeven proeven vonden consistente verbeteringen in stemmingsgerelateerde PMS-symptomen met magnesium (200-400 mg/dag). Drie proeven rapporteerden ook significante verminderingen van een opgeblazen gevoel en krampen.</p><p class="study-limitation en">Limitation: Trials were heterogeneous in magnesium form, dose, and duration. Most were conducted over 2–3 cycles only.</p><p class="study-limitation nl">Beperking: Proeven waren heterogeen in magnesiumvorm, dosis en duur. De meeste werden slechts over 2-3 cycli uitgevoerd.</p><div class="study-badges"><span class="study-badge badge-review"><span class="en">Systematic review</span><span class="nl">Systematische review</span></span></div></div></div>
+      </div>
+      <div class="efficacy-section">
+        <div class="efficacy-title en">Self-reported outcomes at 3 menstrual cycles</div><div class="efficacy-title nl">Zelfgerapporteerde uitkomsten na 3 menstruatiecycli</div>
+        <div class="efficacy-subtitle en">Survey data from 1,080 subscribers completing a minimum 3-cycle course. Self-reported and observational — not a clinical trial. Results vary by individual hormonal baseline.</div>
+        <div class="efficacy-subtitle nl">Enquêtegegevens van 1.080 abonnees die een minimumkuur van 3 cycli hebben voltooid. Zelfgerapporteerd en observationeel — geen klinische studie.</div>
+        <div class="efficacy-row"><span class="efficacy-label en">Reduced PMS mood symptoms</span><span class="efficacy-label nl">Vermindering PMS-stemmingssymptomen</span><div class="efficacy-track"><div class="efficacy-fill" style="width:68%"></div></div><span class="efficacy-pct">68%</span></div>
+        <div class="efficacy-row"><span class="efficacy-label en">More regular cycle length</span><span class="efficacy-label nl">Regelmatiger cycluslengte</span><div class="efficacy-track"><div class="efficacy-fill" style="width:59%"></div></div><span class="efficacy-pct">59%</span></div>
+        <div class="efficacy-row"><span class="efficacy-label en">Reduced cramping severity</span><span class="efficacy-label nl">Vermindering krampernst</span><div class="efficacy-track"><div class="efficacy-fill" style="width:54%"></div></div><span class="efficacy-pct">54%</span></div>
+        <div class="efficacy-row"><span class="efficacy-label en">Improved sleep in luteal phase</span><span class="efficacy-label nl">Verbeterde slaap in luteale fase</span><div class="efficacy-track"><div class="efficacy-fill" style="width:49%"></div></div><span class="efficacy-pct">49%</span></div>
+        <div class="efficacy-row"><span class="efficacy-label en">No noticeable change</span><span class="efficacy-label nl">Geen merkbare verandering</span><div class="efficacy-track"><div class="efficacy-fill" style="width:21%;background:#b4b2a9"></div></div><span class="efficacy-pct" style="color:#888">21%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-wrap">
+    <footer>
+      <div class="footer-logo">SUPPLEMENTZZ BV</div>
+      <div class="footer-links"><a href="#"><span class="en">Privacy</span><span class="nl">Privacy</span></a><a href="#"><span class="en">Terms</span><span class="nl">Voorwaarden</span></a><a href="#"><span class="en">Contact</span><span class="nl">Contact</span></a></div>
+      <div class="footer-copy en">© 2025 Supplementzz BV — Fictional demo company</div>
+      <div class="footer-copy nl">© 2025 Supplementzz BV — Fictief demobedrijf</div>
+    </footer>
+  </div>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div><div class="cookie-title en">We use cookies to improve your experience</div><div class="cookie-title nl">Wij gebruiken cookies om uw ervaring te verbeteren</div><p class="cookie-body en">Supplementzz BV uses functional and analytical cookies. We do not sell your data. Read our <a href="#">privacy policy</a>.</p><p class="cookie-body nl">Supplementzz BV gebruikt functionele en analytische cookies. Wij verkopen uw gegevens niet. Lees ons <a href="#">privacybeleid</a>.</p></div>
+    <div class="cookie-actions"><button class="cookie-settings" onclick="dismissCookie()"><span class="en">Manage</span><span class="nl">Beheren</span></button><button class="cookie-decline" onclick="dismissCookie()"><span class="en">Decline</span><span class="nl">Weigeren</span></button><button class="cookie-accept" onclick="dismissCookie()"><span class="en">Accept all</span><span class="nl">Alles accepteren</span></button></div>
+  </div>
+</div>
+
+<script>
+  let qty=1,basePrice=52;
+  function setLang(lang){document.getElementById('site').className='lang-'+lang;document.getElementById('btn-en').classList.toggle('active',lang==='en');document.getElementById('btn-nl').classList.toggle('active',lang==='nl');document.documentElement.lang=lang}
+  function selectPlan(el,price){document.querySelectorAll('.plan-option').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');basePrice=price;updateCart()}
+  function changeQty(d){qty=Math.max(1,Math.min(10,qty+d));document.getElementById('qtyNum').textContent=qty;updateCart()}
+  function updateCart(){document.getElementById('cartTotal').textContent='€'+(basePrice*qty)}
+  function addToCart(btn){const o=btn.innerHTML;btn.innerHTML='✓ Added to cart!';btn.style.background='#72243e';setTimeout(()=>{btn.innerHTML=o;btn.style.background=''},2000)}
+  function switchTab(btn,tab){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('tab-'+tab).classList.add('active')}
+  function dismissCookie(){const b=document.getElementById('cookieBanner');b.classList.add('hidden');setTimeout(()=>b.style.display='none',400)}
+  document.querySelectorAll('.thumbnail').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.thumbnail').forEach(x=>x.classList.remove('active'));t.classList.add('active')}));
+  window.addEventListener('load',()=>setTimeout(()=>{document.getElementById('cookieBanner').style.opacity='1'},800));
+</script>
+</body>
+</html>
