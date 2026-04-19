@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Supplementzz BV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--navy:#0a1628;--teal:#0f9b77;--teal-light:#e1f5ee;--teal-mid:#1d9e75;--off-white:#f7f8fa;--text-primary:#0a1628;--text-secondary:#4a5568;--text-muted:#718096;--border:rgba(10,22,40,0.1);--font:'DM Sans',sans-serif;--mono:'DM Mono',monospace}
+    body{font-family:var(--font);background:white;color:var(--text-primary);overflow-x:hidden}
+    .en{display:block}.nl{display:none}.lang-nl .en{display:none}.lang-nl .nl{display:block}
+    span.en{display:inline}span.nl{display:none}.lang-nl span.en{display:none}.lang-nl span.nl{display:inline}
+
+    .trust-bar{background:var(--off-white);border-bottom:0.5px solid var(--border);padding:0 2rem;height:44px;display:flex;align-items:center;justify-content:center}
+    .trust-items{display:flex;align-items:center;gap:2.5rem;max-width:1200px;width:100%;justify-content:center}
+    .trust-item{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;white-space:nowrap}
+    .trust-item svg{width:14px;height:14px;flex-shrink:0}.trust-divider{width:1px;height:16px;background:var(--border)}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-mark{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--navy)}.nav-links a.active{color:var(--navy);font-weight:500}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .lang-switcher{display:flex;gap:2px;background:var(--off-white);border-radius:6px;padding:3px;border:0.5px solid var(--border)}
+    .lang-btn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;padding:4px 10px;border:none;cursor:pointer;border-radius:4px;background:transparent;color:var(--text-muted);transition:all .15s}
+    .lang-btn.active{background:white;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+    .nav-cta{font-size:13px;font-weight:500;padding:8px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+    .nav-cta:hover{background:#1a3360}
+    .breadcrumb{max-width:1200px;margin:0 auto;padding:1.25rem 2rem;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);font-family:var(--mono)}
+    .breadcrumb a{color:var(--text-muted);text-decoration:none}.breadcrumb a:hover{color:var(--navy)}.breadcrumb-sep{opacity:.4}
+
+    /* HERO */
+    .about-hero{background:var(--navy);padding:5rem 2rem;text-align:center}
+    .about-hero-inner{max-width:700px;margin:0 auto}
+    .hero-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:1.25rem}
+    .hero-title{font-size:3rem;font-weight:300;letter-spacing:-.03em;color:white;line-height:1.1;margin-bottom:1.25rem}
+    .hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.75}
+
+    /* MISSION */
+    .mission-section{max-width:1200px;margin:0 auto;padding:5rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .mission-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem}
+    .mission-title{font-size:2rem;font-weight:300;letter-spacing:-.02em;color:var(--navy);line-height:1.2;margin-bottom:1.25rem}
+    .mission-body{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.8}
+    .mission-body p{margin-bottom:1rem}.mission-body p:last-child{margin-bottom:0}
+    .mission-visual{background:linear-gradient(145deg,#e1f5ee,#9fe1cb);border-radius:20px;height:380px;display:flex;align-items:center;justify-content:center;font-size:80px}
+
+    /* STATS */
+    .stats-section{background:var(--off-white);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:3.5rem 2rem}
+    .stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+    .stat{text-align:center}
+    .stat-num{font-family:var(--mono);font-size:2.5rem;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .stat-label{font-size:13px;font-weight:300;color:var(--text-muted)}
+
+    /* STORY */
+    .story-section{max-width:800px;margin:0 auto;padding:5rem 2rem}
+    .story-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;text-align:center}
+    .story-title{font-size:2rem;font-weight:300;letter-spacing:-.02em;color:var(--navy);text-align:center;margin-bottom:3rem}
+    .timeline{display:flex;flex-direction:column;gap:0}
+    .timeline-item{display:grid;grid-template-columns:100px 1fr;gap:2rem;padding-bottom:2.5rem;position:relative}
+    .timeline-item::before{content:'';position:absolute;left:99px;top:8px;bottom:0;width:1px;background:var(--border)}
+    .timeline-item:last-child::before{display:none}
+    .timeline-year{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--teal);padding-top:2px;text-align:right}
+    .timeline-dot{position:absolute;left:93px;top:4px;width:13px;height:13px;border-radius:50%;background:var(--teal);border:2px solid white;box-shadow:0 0 0 1px var(--teal)}
+    .timeline-content{}
+    .timeline-title{font-size:15px;font-weight:500;color:var(--navy);margin-bottom:.4rem}
+    .timeline-text{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.7}
+
+    /* VALUES */
+    .values-section{background:var(--off-white);border-top:0.5px solid var(--border);padding:5rem 2rem}
+    .values-inner{max-width:1200px;margin:0 auto}
+    .values-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;text-align:center}
+    .values-title{font-size:2rem;font-weight:300;letter-spacing:-.02em;color:var(--navy);text-align:center;margin-bottom:3rem}
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .value-card{background:white;border:0.5px solid var(--border);border-radius:16px;padding:2rem}
+    .value-icon{width:44px;height:44px;border-radius:12px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1.25rem}
+    .value-title{font-size:16px;font-weight:500;color:var(--navy);margin-bottom:.6rem}
+    .value-text{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.7}
+
+    /* SCIENCE */
+    .science-section{max-width:1200px;margin:0 auto;padding:5rem 2rem}
+    .science-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;text-align:center}
+    .science-title{font-size:2rem;font-weight:300;letter-spacing:-.02em;color:var(--navy);text-align:center;margin-bottom:1rem}
+    .science-sub{font-size:15px;font-weight:300;color:var(--text-muted);text-align:center;max-width:600px;margin:0 auto 3rem}
+    .science-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .science-card{border:0.5px solid var(--border);border-radius:14px;padding:1.5rem;position:relative;overflow:hidden}
+    .science-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--teal)}
+    .science-num{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--teal);margin-bottom:.5rem}
+    .science-card-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.5rem}
+    .science-card-text{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.65}
+
+    /* CTA */
+    .cta-section{background:var(--navy);padding:5rem 2rem;text-align:center}
+    .cta-inner{max-width:600px;margin:0 auto}
+    .cta-title{font-size:2rem;font-weight:300;color:white;letter-spacing:-.02em;margin-bottom:1rem}
+    .cta-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:2rem}
+    .cta-btn{font-size:14px;font-weight:500;padding:14px 32px;background:white;color:var(--navy);border:none;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s}
+    .cta-btn:hover{background:#e8e8e8}
+
+    .footer-wrap{border-top:0.5px solid var(--border)}
+    footer{max-width:1200px;margin:0 auto;padding:2rem;display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text-muted)}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:12px;color:var(--text-muted);text-decoration:none}
+    .footer-copy{font-size:12px;color:var(--text-muted)}
+    .cookie-banner{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 3rem);max-width:900px;background:white;border:0.5px solid var(--border);border-radius:16px;padding:1.25rem 1.75rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;z-index:999;box-shadow:0 4px 24px rgba(10,22,40,0.08);transition:opacity .3s,transform .3s}
+    .cookie-banner.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+    .cookie-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .cookie-body{font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.6}
+    .cookie-actions{display:flex;gap:8px;flex-shrink:0}
+    .cookie-accept{font-size:12px;font-weight:500;padding:9px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer}
+    .cookie-decline{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:0.5px solid var(--border);border-radius:8px;cursor:pointer}
+    .cookie-settings{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:none;cursor:pointer;text-decoration:underline}
+    @media(max-width:900px){.mission-section{grid-template-columns:1fr;gap:2rem}.stats-inner{grid-template-columns:repeat(2,1fr)}.values-grid,.science-grid{grid-template-columns:1fr}.nav-links{display:none}footer{flex-direction:column;gap:1rem;text-align:center}}
+  </style>
+</head>
+<body>
+<div id="site" class="lang-en">
+
+  <div class="trust-bar"><div class="trust-items">
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5H13L9.5 7.6 10.8 12 7 9.5 3.2 12 4.5 7.6 1 5H5.2L7 1Z" stroke="#0f9b77" stroke-width="1.1" stroke-linejoin="round"/></svg><span class="en">Dutch quality certified</span><span class="nl">Nederlandse kwaliteit gecertificeerd</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#0f9b77" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">90-day money-back guarantee</span><span class="nl">90 dagen niet-goed-geld-terug</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M1 10l3-6 3 4 2-2 4 4" stroke="#718096" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Patented formulation</span><span class="nl">Gepatenteerde formule</span></div>
+  </div></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.2"/><path d="M8 4v8M5 6.5h6M5 9.5h6" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div>SUPPLEMENTZZ</a>
+    <ul class="nav-links">
+      <li><a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a></li>
+      <li><a href="about.html" class="active"><span class="en">About</span><span class="nl">Over ons</span></a></li>
+      <li><a href="blog.html">Blog</a></li><li><a href="contact.html"><span class="en">Contact</span><span class="nl">Contact</span></a></li><li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="cart.html" style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--text-secondary);text-decoration:none;padding:6px 10px;border:0.5px solid var(--border);border-radius:8px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1h2l1.5 7h7l1-5H4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="12" r="1" fill="currentColor"/><circle cx="11" cy="12" r="1" fill="currentColor"/></svg>Cart</a>
+      <div class="lang-switcher"><button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button><button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button></div>
+      <button class="nav-cta" onclick="location.href='products.html'"><span class="en">Shop now</span><span class="nl">Nu winkelen</span></button>
+    </div>
+  </nav>
+
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span style="color:var(--navy)"><span class="en">About</span><span class="nl">Over ons</span></span></div>
+
+  <!-- HERO -->
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <div class="hero-tag"><span class="en">Our story</span><span class="nl">Ons verhaal</span></div>
+      <h1 class="hero-title en">Formulated in the Netherlands.<br>Built for longevity.</h1>
+      <h1 class="hero-title nl">Geformuleerd in Nederland.<br>Gebouwd voor een lang leven.</h1>
+      <p class="hero-sub en">We believe every person — regardless of gender — deserves to reach their full biological potential. Supplementzz BV was founded to close the gap between what science knows and what people actually take.</p>
+      <p class="hero-sub nl">Wij geloven dat ieder mens — ongeacht geslacht — zijn of haar volledige biologische potentieel verdient te bereiken. Supplementzz BV werd opgericht om de kloof te dichten tussen wat de wetenschap weet en wat mensen daadwerkelijk nemen.</p>
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <div class="mission-section">
+    <div>
+      <div class="mission-tag"><span class="en">Our mission</span><span class="nl">Onze missie</span></div>
+      <h2 class="mission-title en">So that everyone can live as long and as healthily as possible.</h2>
+      <h2 class="mission-title nl">Zodat iedereen zo lang en zo gezond mogelijk kan leven.</h2>
+      <div class="mission-body">
+        <p class="en">Most supplement brands either overclaim or underdeliver. They use proprietary blends to hide underdosed ingredients, cite studies loosely, and prioritise marketing over mechanism. We built Supplementzz BV to do the opposite.</p>
+        <p class="nl">De meeste supplementmerken beloven te veel of leveren te weinig. Ze gebruiken proprietary blends om ondergdoseerde ingrediënten te verbergen, citeren studies losjes en prioriteren marketing boven mechanisme. We bouwden Supplementzz BV om het tegenovergestelde te doen.</p>
+        <p class="en">Every formula starts with the published literature. We identify the mechanisms, select ingredients that act on those mechanisms at clinically meaningful doses, and disclose every milligram. Our patented formulations represent two years of research — and we update them annually as the evidence evolves.</p>
+        <p class="nl">Elke formule begint met de gepubliceerde literatuur. We identificeren de mechanismen, selecteren ingrediënten die op die mechanismen inwerken op klinisch betekenisvolle doses, en onthullen elke milligram. Onze gepatenteerde formuleringen vertegenwoordigen twee jaar onderzoek — en we updaten ze jaarlijks naarmate het bewijs evolueert.</p>
+      </div>
+    </div>
+    <div class="mission-visual">🔬</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-section">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-num">2+</div><div class="stat-label"><span class="en">Years of R&amp;D</span><span class="nl">Jaar R&amp;D</span></div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label"><span class="en">Patented formulas</span><span class="nl">Gepatenteerde formules</span></div></div>
+      <div class="stat"><div class="stat-num">2,600+</div><div class="stat-label"><span class="en">Active subscribers</span><span class="nl">Actieve abonnees</span></div></div>
+      <div class="stat"><div class="stat-num">4.6★</div><div class="stat-label"><span class="en">Average review score</span><span class="nl">Gemiddelde reviewscore</span></div></div>
+    </div>
+  </div>
+
+  <!-- STORY TIMELINE -->
+  <div class="story-section">
+    <div class="story-tag"><span class="en">How we got here</span><span class="nl">Hoe we hier zijn gekomen</span></div>
+    <h2 class="story-title en">The Supplementzz timeline</h2>
+    <h2 class="story-title nl">De Supplementzz tijdlijn</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2022</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title en">The research begins</div>
+          <div class="timeline-title nl">Het onderzoek begint</div>
+          <p class="timeline-text en">Frustrated by the lack of transparent, evidence-based supplements in the Netherlands, our founding team begins a systematic review of the peer-reviewed literature on hair growth, male hormonal health, and female cycle support.</p>
+          <p class="timeline-text nl">Gefrustreerd door het gebrek aan transparante, evidence-based supplementen in Nederland begint ons oprichtingsteam een systematische review van de peer-reviewed literatuur over haargroei, mannelijke hormonale gezondheid en vrouwelijke cyclusondersteuning.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title en">Formulation &amp; patent filing</div>
+          <div class="timeline-title nl">Formulering &amp; octrooiaanvraag</div>
+          <p class="timeline-text en">After 18 months of formulation work — testing ingredient combinations, bioavailability forms, and dosing protocols — three formulas are finalised and submitted for Dutch patent registration (NL2031847, NL2031848, NL2031849).</p>
+          <p class="timeline-text nl">Na 18 maanden formuleringswerk — testen van ingrediëntencombinaties, biologische beschikbaarheidsvormen en doseringprotocollen — worden drie formules afgerond en ingediend voor Nederlandse octrooiregistratie.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title en">Launch &amp; first subscribers</div>
+          <div class="timeline-title nl">Lancering &amp; eerste abonnees</div>
+          <p class="timeline-text en">Supplementzz BV launches with all three product lines. Within six months, over 1,000 subscribers are tracking their results. First independent customer reviews confirm the product timelines match real-world experience.</p>
+          <p class="timeline-text nl">Supplementzz BV lanceert met alle drie de productlijnen. Binnen zes maanden volgen meer dan 1.000 abonnees hun resultaten. Eerste onafhankelijke klantbeoordelingen bevestigen dat de producttijdlijnen overeenkomen met de praktijkervaring.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title en">Annual formula review</div>
+          <div class="timeline-title nl">Jaarlijkse formulebeoordeling</div>
+          <p class="timeline-text en">Our scientific advisory board completes the first annual review. Biotin dose is optimised from 10,000 mcg to 5,000 mcg based on updated evidence. Zinc picolinate dose corrected to 15 mg. Methylfolate replaces folic acid in BalanceHer. All changes are communicated transparently to subscribers.</p>
+          <p class="timeline-text nl">Onze wetenschappelijke adviesraad voltooit de eerste jaarlijkse beoordeling. Biotinedosis geoptimaliseerd van 10.000 mcg naar 5.000 mcg op basis van bijgewerkt bewijs. Zinkpicolinaatdosis gecorrigeerd naar 15 mg. Methylfolaat vervangt foliumzuur in BalanceHer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="values-section">
+    <div class="values-inner">
+      <div class="values-tag"><span class="en">What we stand for</span><span class="nl">Waar wij voor staan</span></div>
+      <h2 class="values-title en">Our values</h2>
+      <h2 class="values-title nl">Onze waarden</h2>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-icon">🔬</div><div class="value-title en">Evidence first</div><div class="value-title nl">Bewijs voorop</div><p class="value-text en">Every ingredient is selected based on peer-reviewed research. We cite our sources, state the study type, and disclose limitations. We do not make claims the evidence does not support.</p><p class="value-text nl">Elk ingrediënt wordt geselecteerd op basis van peer-reviewed onderzoek. We citeren onze bronnen, vermelden het studietype en onthullen beperkingen. We doen geen claims die het bewijs niet ondersteunt.</p></div>
+        <div class="value-card"><div class="value-icon">📋</div><div class="value-title en">Full transparency</div><div class="value-title nl">Volledige transparantie</div><p class="value-text en">No proprietary blends. Every dose is disclosed on the label and on our website. If we update a formula, we tell you why — including when we were wrong.</p><p class="value-text nl">Geen proprietary blends. Elke dosis staat vermeld op het etiket en onze website. Als we een formule updaten, vertellen we waarom — ook als we het fout hadden.</p></div>
+        <div class="value-card"><div class="value-icon">🌍</div><div class="value-title en">Dutch quality standards</div><div class="value-title nl">Nederlandse kwaliteitsnormen</div><p class="value-text en">All formulas are manufactured under Dutch quality oversight, with third-party batch testing for purity and potency. Ingredients are sourced from certified suppliers and tested on arrival.</p><p class="value-text nl">Alle formules worden vervaardigd onder Nederlands kwaliteitstoezicht, met externe batchanalyse voor zuiverheid en potentie. Ingrediënten worden betrokken van gecertificeerde leveranciers en getest bij ontvangst.</p></div>
+        <div class="value-card"><div class="value-icon">♻️</div><div class="value-title en">Sustainable packaging</div><div class="value-title nl">Duurzame verpakking</div><p class="value-text en">All packaging is made from 100% recycled materials. Our shipping boxes are fully compostable. We are carbon-neutral on all domestic shipments as of 2024.</p><p class="value-text nl">Alle verpakkingen zijn gemaakt van 100% gerecycled materiaal. Onze verzenddozen zijn volledig composteerbaar. We zijn koolstofneutraal op alle binnenlandse zendingen vanaf 2024.</p></div>
+        <div class="value-card"><div class="value-icon">🤝</div><div class="value-title en">Honest marketing</div><div class="value-title nl">Eerlijke marketing</div><p class="value-text en">We do not use before/after photos, unverified testimonials, or fear-based messaging. Our influencer partners are required to disclose our relationship and are never paid to omit side effects or limitations.</p><p class="value-text nl">We gebruiken geen voor/na-foto's, niet-geverifieerde getuigenissen of angstgebaseerde berichten. Onze influencerpartners zijn verplicht onze relatie te onthullen.</p></div>
+        <div class="value-card"><div class="value-icon">💊</div><div class="value-title en">No overclaiming</div><div class="value-title nl">Geen overdreven claims</div><p class="value-text en">We are not a medicine. We state this clearly. Our self-reported efficacy data includes non-responder rates, and we actively encourage customers to consult their GP before starting any supplement regime.</p><p class="value-text nl">Wij zijn geen medicijn. Dit stellen we duidelijk. Onze zelfgerapporteerde werkzaamheidsgegevens omvatten non-responderpercentages en we moedigen klanten actief aan hun huisarts te raadplegen.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCIENCE APPROACH -->
+  <div class="science-section">
+    <div class="science-tag"><span class="en">How we formulate</span><span class="nl">Hoe wij formuleren</span></div>
+    <h2 class="science-title en">Our scientific process</h2>
+    <h2 class="science-title nl">Ons wetenschappelijk proces</h2>
+    <p class="science-sub en">Three steps from published research to finished capsule.</p>
+    <p class="science-sub nl">Drie stappen van gepubliceerd onderzoek naar afgewerkte capsule.</p>
+    <div class="science-grid">
+      <div class="science-card"><div class="science-num">01</div><div class="science-card-title en">Literature review</div><div class="science-card-title nl">Literatuuronderzoek</div><p class="science-card-text en">We start with systematic reviews and meta-analyses, then drill into individual RCTs. We exclude studies with industry funding conflicts where independent replication is absent. Evidence quality is rated by study type: RCT > observational > mechanistic.</p><p class="science-card-text nl">We beginnen met systematische reviews en meta-analyses, daarna gaan we dieper in op individuele RCT's. We sluiten studies met industriefinancieringsconflicten uit waar onafhankelijke replicatie ontbreekt.</p></div>
+      <div class="science-card"><div class="science-num">02</div><div class="science-card-title en">Dose selection</div><div class="science-card-title nl">Dosesselectie</div><p class="science-card-text en">We select the lowest dose shown to be effective in the strongest available study. We then verify this dose sits within established safe upper intake levels. We never select doses based on what is cheapest to produce or what makes the label look impressive.</p><p class="science-card-text nl">We selecteren de laagste dosis die effectief is gebleken in de sterkste beschikbare studie. We verifiëren vervolgens dat deze dosis binnen vastgestelde veilige bovenste innamedoseringen valt.</p></div>
+      <div class="science-card"><div class="science-num">03</div><div class="science-card-title en">Annual review</div><div class="science-card-title nl">Jaarlijkse beoordeling</div><p class="science-card-text en">Every formula is reviewed annually by our scientific advisory board against the latest published evidence. Where the evidence has shifted, we update the formula and communicate the change to all subscribers — including when it means lowering a dose we previously overstated.</p><p class="science-card-text nl">Elke formule wordt jaarlijks beoordeeld door onze wetenschappelijke adviesraad aan de hand van het meest recente gepubliceerde bewijs.</p></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-inner">
+      <h2 class="cta-title en">Ready to start?</h2>
+      <h2 class="cta-title nl">Klaar om te beginnen?</h2>
+      <p class="cta-sub en">Browse our three formulas and find the one — or the combination — that fits your goals.</p>
+      <p class="cta-sub nl">Bekijk onze drie formules en vind de formule — of combinatie — die bij uw doelen past.</p>
+      <a class="cta-btn" href="products.html"><span class="en">View all products</span><span class="nl">Bekijk alle producten</span></a>
+    </div>
+  </div>
+
+  <div class="footer-wrap"><footer>
+    <div class="footer-logo">SUPPLEMENTZZ BV</div>
+    <div class="footer-links"><a href="privacy.html"><span class="en">Privacy</span><span class="nl">Privacy</span></a><a href="terms.html"><span class="en">Terms</span><span class="nl">Voorwaarden</span></a><a href="contact.html"><span class="en">Contact</span><span class="nl">Contact</span></a></div>
+    <div class="footer-copy en">© 2026 Supplementzz BV — Fictional demo company</div>
+    <div class="footer-copy nl">© 2026 Supplementzz BV — Fictief demobedrijf</div>
+  </footer></div>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div><div class="cookie-title en">We use cookies to improve your experience</div><div class="cookie-title nl">Wij gebruiken cookies om uw ervaring te verbeteren</div><p class="cookie-body en">Supplementzz BV uses functional and analytical cookies. We do not sell your data.</p><p class="cookie-body nl">Supplementzz BV gebruikt functionele en analytische cookies. Wij verkopen uw gegevens niet.</p></div>
+    <div class="cookie-actions"><button class="cookie-settings" onclick="dismissCookie()"><span class="en">Manage</span><span class="nl">Beheren</span></button><button class="cookie-decline" onclick="dismissCookie()"><span class="en">Decline</span><span class="nl">Weigeren</span></button><button class="cookie-accept" onclick="dismissCookie()"><span class="en">Accept all</span><span class="nl">Alles accepteren</span></button></div>
+  </div>
+</div>
+<script>
+  function setLang(l){document.getElementById('site').className='lang-'+l;document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-nl').classList.toggle('active',l==='nl')}
+  function dismissCookie(){const b=document.getElementById('cookieBanner');b.classList.add('hidden');setTimeout(()=>b.style.display='none',400)}
+</script>
+</body>
+</html>

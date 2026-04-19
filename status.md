@@ -9,11 +9,14 @@
 ## Todo
 - [X] Export hairmax.html as standalone file
 - [X] products.html — product overview/grid page
-- [ ] cart.html — shopping cart
-- [ ] checkout.html — checkout flow
-- [ ] about.html — science/about page
-- [ ] blog.html — blog index
-- [ ] contact.html — contact page
+- [X] cart.html — shopping cart
+- [X] checkout.html — checkout flow
+- [X] about.html — science/about page
+- [x] blog.html — blog index
+- [X] contact.html — contact page
+- [x] privacy.html 
+- [x] terms.html
+- [] show now.html - does not yet work 
 - [ ] Phase 2: fictional orders dataset (2023–2025)
 - [ ] Phase 2: P&L / financial dashboard
 - [ ] Phase 2: management reports

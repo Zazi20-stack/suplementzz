@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Supplementzz BV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--navy:#0a1628;--teal:#0f9b77;--teal-light:#e1f5ee;--teal-mid:#1d9e75;--blue:#185fa5;--blue-light:#e6f1fb;--pink:#993556;--pink-light:#fbeaf0;--off-white:#f7f8fa;--text-primary:#0a1628;--text-secondary:#4a5568;--text-muted:#718096;--border:rgba(10,22,40,0.1);--font:'DM Sans',sans-serif;--mono:'DM Mono',monospace}
+    body{font-family:var(--font);background:white;color:var(--text-primary);overflow-x:hidden}
+    .en{display:block}.nl{display:none}.lang-nl .en{display:none}.lang-nl .nl{display:block}
+    span.en{display:inline}span.nl{display:none}.lang-nl span.en{display:none}.lang-nl span.nl{display:inline}
+
+    .trust-bar{background:var(--off-white);border-bottom:0.5px solid var(--border);padding:0 2rem;height:44px;display:flex;align-items:center;justify-content:center}
+    .trust-items{display:flex;align-items:center;gap:2.5rem;max-width:1200px;width:100%;justify-content:center}
+    .trust-item{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;white-space:nowrap}
+    .trust-item svg{width:14px;height:14px;flex-shrink:0}.trust-divider{width:1px;height:16px;background:var(--border)}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-mark{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--navy)}.nav-links a.active{color:var(--navy);font-weight:500}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .lang-switcher{display:flex;gap:2px;background:var(--off-white);border-radius:6px;padding:3px;border:0.5px solid var(--border)}
+    .lang-btn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;padding:4px 10px;border:none;cursor:pointer;border-radius:4px;background:transparent;color:var(--text-muted);transition:all .15s}
+    .lang-btn.active{background:white;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+    .nav-cta{font-size:13px;font-weight:500;padding:8px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+    .nav-cta:hover{background:#1a3360}
+    .breadcrumb{max-width:1200px;margin:0 auto;padding:1.25rem 2rem;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);font-family:var(--mono)}
+    .breadcrumb a{color:var(--text-muted);text-decoration:none}.breadcrumb a:hover{color:var(--navy)}.breadcrumb-sep{opacity:.4}
+
+    /* HEADER */
+    .page-header{max-width:1200px;margin:0 auto;padding:3rem 2rem 2.5rem}
+    .header-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--teal);text-transform:uppercase;margin-bottom:.75rem}
+    .header-title{font-size:2.5rem;font-weight:300;letter-spacing:-.03em;color:var(--navy);line-height:1.1;margin-bottom:1rem}
+    .header-sub{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.7;max-width:560px}
+
+    /* FILTER */
+    .filter-bar{max-width:1200px;margin:0 auto;padding:0 2rem 2.5rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .filter-btn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:7px 16px;border:0.5px solid var(--border);border-radius:20px;background:white;color:var(--text-muted);cursor:pointer;transition:all .15s}
+    .filter-btn:hover{border-color:var(--navy);color:var(--navy)}
+    .filter-btn.active{background:var(--navy);color:white;border-color:var(--navy)}
+
+    /* FEATURED POST */
+    .featured-wrap{max-width:1200px;margin:0 auto;padding:0 2rem 3rem}
+    .featured-card{border:0.5px solid var(--border);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;cursor:pointer;transition:border-color .2s,transform .2s}
+    .featured-card:hover{border-color:rgba(10,22,40,.2);transform:translateY(-2px)}
+    .featured-img{height:320px;display:flex;align-items:center;justify-content:center;font-size:80px;position:relative}
+    .featured-img.hair{background:linear-gradient(145deg,#e1f5ee,#9fe1cb)}
+    .featured-img.male{background:linear-gradient(145deg,#e6f1fb,#b5d4f4)}
+    .featured-img.female{background:linear-gradient(145deg,#fbeaf0,#f4c0d1)}
+    .featured-img.science{background:linear-gradient(145deg,#f0f0f8,#d0d0e8)}
+    .featured-badge{position:absolute;top:16px;left:16px;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:10px;background:white;border:0.5px solid var(--border)}
+    .featured-badge.hair{color:#0f6e56}.featured-badge.male{color:#185fa5}.featured-badge.female{color:#993556}.featured-badge.science{color:#4a3f8c}
+    .featured-body{padding:2.5rem}
+    .post-meta{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--text-muted);margin-bottom:1rem}
+    .post-dot{width:3px;height:3px;border-radius:50%;background:var(--border)}
+    .post-title{font-size:1.5rem;font-weight:400;color:var(--navy);line-height:1.3;margin-bottom:.875rem;letter-spacing:-.01em}
+    .post-excerpt{font-size:14px;font-weight:300;color:var(--text-secondary);line-height:1.75;margin-bottom:1.5rem}
+    .post-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+    .post-tag{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--off-white);color:var(--text-muted);border:0.5px solid var(--border)}
+    .read-more{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:border-color .2s}
+    .read-more:hover{border-color:var(--navy)}
+
+    /* GRID */
+    .posts-wrap{max-width:1200px;margin:0 auto;padding:0 2rem 5rem}
+    .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .post-card{border:0.5px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s;display:flex;flex-direction:column}
+    .post-card:hover{border-color:rgba(10,22,40,.2);transform:translateY(-2px)}
+    .post-card-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+    .post-card-img.hair{background:linear-gradient(145deg,#e1f5ee,#9fe1cb)}
+    .post-card-img.male{background:linear-gradient(145deg,#e6f1fb,#b5d4f4)}
+    .post-card-img.female{background:linear-gradient(145deg,#fbeaf0,#f4c0d1)}
+    .post-card-img.science{background:linear-gradient(145deg,#f0f0f8,#d0d0e8)}
+    .post-card-img.longevity{background:linear-gradient(145deg,#fef9e1,#f5e6a0)}
+    .post-card-body{padding:1.25rem;flex:1;display:flex;flex-direction:column}
+    .post-card-meta{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-bottom:.6rem;display:flex;gap:8px}
+    .post-card-title{font-size:15px;font-weight:500;color:var(--navy);line-height:1.4;margin-bottom:.5rem;flex:1}
+    .post-card-excerpt{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.6;margin-bottom:1rem}
+    .post-card-footer{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border);padding-top:.875rem}
+    .post-card-tag{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+    .post-card-tag.hair{background:var(--teal-light);color:#0f6e56}
+    .post-card-tag.male{background:var(--blue-light);color:#185fa5}
+    .post-card-tag.female{background:var(--pink-light);color:#993556}
+    .post-card-tag.science{background:#ededf5;color:#4a3f8c}
+    .post-card-tag.longevity{background:#fef9e1;color:#7a6010}
+    .post-read{font-size:12px;font-weight:500;color:var(--navy);text-decoration:none}
+
+    /* NEWSLETTER */
+    .newsletter-section{background:var(--navy);padding:4rem 2rem}
+    .newsletter-inner{max-width:600px;margin:0 auto;text-align:center}
+    .nl-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:.875rem}
+    .nl-title{font-size:1.75rem;font-weight:300;color:white;letter-spacing:-.02em;margin-bottom:.875rem}
+    .nl-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:2rem}
+    .nl-form{display:flex;gap:8px;max-width:440px;margin:0 auto}
+    .nl-input{flex:1;font-family:var(--font);font-size:13px;border:none;border-radius:10px;padding:12px 16px;color:var(--navy);outline:none}
+    .nl-btn{font-size:13px;font-weight:500;padding:12px 20px;background:var(--teal);color:white;border:none;border-radius:10px;cursor:pointer;white-space:nowrap;transition:background .2s}
+    .nl-btn:hover{background:var(--teal-mid)}
+    .nl-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:.875rem;font-family:var(--mono)}
+
+    .footer-wrap{border-top:0.5px solid var(--border)}
+    footer{max-width:1200px;margin:0 auto;padding:2rem;display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text-muted)}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:12px;color:var(--text-muted);text-decoration:none}
+    .footer-copy{font-size:12px;color:var(--text-muted)}
+    .cookie-banner{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 3rem);max-width:900px;background:white;border:0.5px solid var(--border);border-radius:16px;padding:1.25rem 1.75rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;z-index:999;box-shadow:0 4px 24px rgba(10,22,40,0.08);transition:opacity .3s,transform .3s}
+    .cookie-banner.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+    .cookie-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .cookie-body{font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.6}
+    .cookie-actions{display:flex;gap:8px;flex-shrink:0}
+    .cookie-accept{font-size:12px;font-weight:500;padding:9px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer}
+    .cookie-decline{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:0.5px solid var(--border);border-radius:8px;cursor:pointer}
+    .cookie-settings{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:none;cursor:pointer;text-decoration:underline}
+    @media(max-width:900px){.featured-card{grid-template-columns:1fr}.posts-grid{grid-template-columns:1fr}.nav-links{display:none}.nl-form{flex-direction:column}footer{flex-direction:column;gap:1rem;text-align:center}}
+  </style>
+</head>
+<body>
+<div id="site" class="lang-en">
+
+  <div class="trust-bar"><div class="trust-items">
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5H13L9.5 7.6 10.8 12 7 9.5 3.2 12 4.5 7.6 1 5H5.2L7 1Z" stroke="#0f9b77" stroke-width="1.1" stroke-linejoin="round"/></svg><span class="en">Evidence-based content</span><span class="nl">Op bewijs gebaseerde inhoud</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#0f9b77" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Reviewed by our scientific advisory board</span><span class="nl">Beoordeeld door onze wetenschappelijke adviesraad</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M1 10l3-6 3 4 2-2 4 4" stroke="#718096" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">Not medical advice</span><span class="nl">Geen medisch advies</span></div>
+  </div></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.2"/><path d="M8 4v8M5 6.5h6M5 9.5h6" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div>SUPPLEMENTZZ</a>
+    <ul class="nav-links">
+      <li><a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a></li>
+      <li><a href="about.html"><span class="en">About</span><span class="nl">Over ons</span></a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html"><span class="en">Contact</span><span class="nl">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="cart.html" style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--text-secondary);text-decoration:none;padding:6px 10px;border:0.5px solid var(--border);border-radius:8px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1h2l1.5 7h7l1-5H4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="12" r="1" fill="currentColor"/><circle cx="11" cy="12" r="1" fill="currentColor"/></svg>Cart</a>
+      <div class="lang-switcher"><button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button><button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button></div>
+      <button class="nav-cta" onclick="location.href='products.html'"><span class="en">Shop now</span><span class="nl">Nu winkelen</span></button>
+    </div>
+  </nav>
+
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span style="color:var(--navy)">Blog</span></div>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="header-tag"><span class="en">Science & insights</span><span class="nl">Wetenschap & inzichten</span></div>
+    <h1 class="header-title en">The Supplementzz Journal</h1>
+    <h1 class="header-title nl">Het Supplementzz Journal</h1>
+    <p class="header-sub en">Evidence-based articles on hormonal health, hair biology, longevity, and the science behind our formulas. Written by our team, reviewed by our scientific advisory board.</p>
+    <p class="header-sub nl">Op bewijs gebaseerde artikelen over hormonale gezondheid, haarbiologie, levensduur en de wetenschap achter onze formules. Geschreven door ons team, beoordeeld door onze wetenschappelijke adviesraad.</p>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterPosts('all',this)"><span class="en">All</span><span class="nl">Alles</span></button>
+    <button class="filter-btn" onclick="filterPosts('hair',this)"><span class="en">Hair</span><span class="nl">Haar</span></button>
+    <button class="filter-btn" onclick="filterPosts('male',this)"><span class="en">Male health</span><span class="nl">Mannelijke gezondheid</span></button>
+    <button class="filter-btn" onclick="filterPosts('female',this)"><span class="en">Female health</span><span class="nl">Vrouwelijke gezondheid</span></button>
+    <button class="filter-btn" onclick="filterPosts('science',this)"><span class="en">Science</span><span class="nl">Wetenschap</span></button>
+    <button class="filter-btn" onclick="filterPosts('longevity',this)"><span class="en">Longevity</span><span class="nl">Levensduur</span></button>
+  </div>
+
+  <!-- FEATURED -->
+  <div class="featured-wrap">
+    <div class="featured-card" data-cat="hair">
+      <div class="featured-img hair">
+        <div class="featured-badge hair"><span class="en">Featured · Hair</span><span class="nl">Uitgelicht · Haar</span></div>
+        🌿
+      </div>
+      <div class="featured-body">
+        <div class="post-meta">
+          <span>15 March 2025</span><div class="post-dot"></div>
+          <span><span class="en">8 min read</span><span class="nl">8 min lezen</span></div><div class="post-dot"></div>
+          <span>Dr. S. van der Berg</span>
+        </div>
+        <h2 class="post-title en">DHT and hair loss: what the evidence actually says about saw palmetto</h2>
+        <h2 class="post-title nl">DHT en haarverlies: wat het bewijs werkelijk zegt over zaagpalm</h2>
+        <p class="post-excerpt en">Saw palmetto is one of the most marketed ingredients in hair supplements — and one of the most misrepresented. We review the RCT evidence, the mechanism of 5α-reductase inhibition, and why most products use the wrong dose.</p>
+        <p class="post-excerpt nl">Zaagpalm is een van de meest gemarkeerde ingrediënten in haarsupplementen — en een van de meest verkeerd voorgestelde. We beoordelen het RCT-bewijs, het mechanisme van 5α-reductaseremming, en waarom de meeste producten de verkeerde dosis gebruiken.</p>
+        <div class="post-tags">
+          <span class="post-tag">DHT</span>
+          <span class="post-tag">Saw Palmetto</span>
+          <span class="post-tag">RCT</span>
+          <span class="post-tag">Androgenetic alopecia</span>
+        </div>
+        <a class="read-more" href="#"><span class="en">Read article →</span><span class="nl">Lees artikel →</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST GRID -->
+  <div class="posts-wrap">
+    <div class="posts-grid" id="postsGrid">
+
+      <div class="post-card" data-cat="male">
+        <div class="post-card-img male">⚡</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>2 Mar 2025</span><span>·</span><span>6 min</span></div>
+          <div class="post-card-title en">Cortisol and testosterone: the HPA–HPG axis explained</div>
+          <div class="post-card-title nl">Cortisol en testosteron: de HPA–HPG-as uitgelegd</div>
+          <p class="post-card-excerpt en">Chronic stress suppresses testosterone through a well-characterised hormonal pathway. Here's how it works — and what the evidence says about ashwagandha's role in breaking the cycle.</p>
+          <p class="post-card-excerpt nl">Chronische stress onderdrukt testosteron via een goed gekarakteriseerd hormonaal pathway. Zo werkt het — en wat het bewijs zegt over de rol van ashwagandha.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag male">Male health</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="female">
+        <div class="post-card-img female">🌸</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>18 Feb 2025</span><span>·</span><span>7 min</span></div>
+          <div class="post-card-title en">The luteal phase and PMS: why progesterone matters more than oestrogen</div>
+          <div class="post-card-title nl">De luteale fase en PMS: waarom progesteron meer telt dan oestrogeen</div>
+          <p class="post-card-excerpt en">Most PMS content focuses on oestrogen dominance. The stronger evidence points to luteal phase insufficiency and prolactin dysregulation — and Vitex agnus-castus addresses both.</p>
+          <p class="post-card-excerpt nl">De meeste PMS-inhoud richt zich op oestrogeendominantie. Het sterkere bewijs wijst op luteale fase-insufficiëntie en prolactinedysregulatie — en Vitex agnus-castus adresseert beide.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag female">Female health</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="science">
+        <div class="post-card-img science">🔬</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>5 Feb 2025</span><span>·</span><span>5 min</span></div>
+          <div class="post-card-title en">Why we corrected our biotin dose from 10,000 to 5,000 mcg</div>
+          <div class="post-card-title nl">Waarom we onze biotinedosis corrigeerden van 10.000 naar 5.000 mcg</div>
+          <p class="post-card-excerpt en">In our 2025 annual formula review, we reduced the biotin dose in HairMax Formula. Here's the evidence behind that decision — and why higher is not always better.</p>
+          <p class="post-card-excerpt nl">In onze jaarlijkse formulebeoordeling van 2025 hebben we de biotinedosis in HairMax Formula verlaagd. Dit is het bewijs achter die beslissing — en waarom hoger niet altijd beter is.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag science">Science</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="longevity">
+        <div class="post-card-img longevity">⏳</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>22 Jan 2025</span><span>·</span><span>9 min</span></div>
+          <div class="post-card-title en">Vitamin D deficiency in the Netherlands: who is at risk and what to do</div>
+          <div class="post-card-title nl">Vitamine D-tekort in Nederland: wie loopt risico en wat te doen</div>
+          <p class="post-card-excerpt en">Northern European latitude means most Dutch adults are vitamin D insufficient for a significant part of the year. We look at the data, the consequences, and the evidence on supplementation.</p>
+          <p class="post-card-excerpt nl">Noordelijk Europese breedtegraad betekent dat de meeste Nederlandse volwassenen een aanzienlijk deel van het jaar vitamine D-insufficiënt zijn. We bekijken de data, de gevolgen en het bewijs over suppletie.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag longevity">Longevity</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="female">
+        <div class="post-card-img female">🌸</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>10 Jan 2025</span><span>·</span><span>6 min</span></div>
+          <div class="post-card-title en">Methylfolate vs folic acid: why the distinction matters for women</div>
+          <div class="post-card-title nl">Methylfolaat vs foliumzuur: waarom het onderscheid belangrijk is voor vrouwen</div>
+          <p class="post-card-excerpt en">Up to 40% of women carry MTHFR variants that impair folic acid conversion. We explain the biochemistry and why BalanceHer Blend uses methylfolate instead.</p>
+          <p class="post-card-excerpt nl">Tot 40% van de vrouwen draagt MTHFR-varianten die de foliumzuuromzetting belemmeren. We leggen de biochemie uit en waarom BalanceHer Blend in plaats daarvan methylfolaat gebruikt.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag female">Female health</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="science">
+        <div class="post-card-img science">🔬</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>3 Jan 2025</span><span>·</span><span>4 min</span></div>
+          <div class="post-card-title en">How to read a supplement label: what brands hide in proprietary blends</div>
+          <div class="post-card-title nl">Hoe een supplementetiket lezen: wat merken verbergen in proprietary blends</div>
+          <p class="post-card-excerpt en">Proprietary blends allow brands to list ingredients without disclosing doses. Here's what to look for — and why full label transparency is non-negotiable.</p>
+          <p class="post-card-excerpt nl">Proprietary blends staan merken toe ingrediënten te vermelden zonder doses te onthullen. Dit is waar u op moet letten — en waarom volledige etikettransparantie ononderhandelbaar is.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag science">Science</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="hair">
+        <div class="post-card-img hair">🌿</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>18 Dec 2024</span><span>·</span><span>5 min</span></div>
+          <div class="post-card-title en">The hair growth cycle: anagen, catagen, telogen — and why timing matters</div>
+          <div class="post-card-title nl">De haargroeicyclus: anageen, catageen, telogeen — en waarom timing belangrijk is</div>
+          <p class="post-card-excerpt en">Why does hair supplementation take 8–12 weeks to show results? The answer lies in follicle biology. We explain the three phases and what happens at each stage.</p>
+          <p class="post-card-excerpt nl">Waarom duurt haarsuppletie 8-12 weken om resultaten te tonen? Het antwoord ligt in de follikelbiologie. We leggen de drie fasen uit en wat er in elke fase gebeurt.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag hair">Hair</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="male">
+        <div class="post-card-img male">⚡</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>5 Dec 2024</span><span>·</span><span>7 min</span></div>
+          <div class="post-card-title en">Magnesium and sleep: the underrated connection to testosterone</div>
+          <div class="post-card-title nl">Magnesium en slaap: de onderschatte verbinding met testosteron</div>
+          <p class="post-card-excerpt en">Most testosterone is produced during deep sleep. Magnesium deficiency impairs sleep quality. We look at the evidence chain connecting these dots — and why bisglycinate is the right form.</p>
+          <p class="post-card-excerpt nl">Het meeste testosteron wordt aangemaakt tijdens diepe slaap. Magnesiumtekort verslechtert de slaapkwaliteit. We bekijken de bewijsketen die deze punten verbindt.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag male">Male health</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="longevity">
+        <div class="post-card-img longevity">⏳</div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>20 Nov 2024</span><span>·</span><span>10 min</span></div>
+          <div class="post-card-title en">Hormonal decline with age: what changes, when, and what you can do</div>
+          <div class="post-card-title nl">Hormonale achteruitgang met leeftijd: wat verandert, wanneer, en wat u kunt doen</div>
+          <p class="post-card-excerpt en">Both testosterone and oestrogen decline with age — but the timelines differ significantly between sexes. A clear-eyed look at the physiology and the evidence on lifestyle and supplementation interventions.</p>
+          <p class="post-card-excerpt nl">Zowel testosteron als oestrogeen nemen af met de leeftijd — maar de tijdlijnen verschillen aanzienlijk tussen geslachten. Een heldere blik op de fysiologie en het bewijs over leefstijl- en suppletie-interventies.</p>
+          <div class="post-card-footer">
+            <span class="post-card-tag longevity">Longevity</span>
+            <a class="post-read" href="#">→</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter-section">
+    <div class="newsletter-inner">
+      <div class="nl-tag"><span class="en">Stay informed</span><span class="nl">Blijf op de hoogte</span></div>
+      <h2 class="nl-title en">The Supplementzz newsletter</h2>
+      <h2 class="nl-title nl">De Supplementzz nieuwsbrief</h2>
+      <p class="nl-sub en">New articles, formula updates, and evidence-based health insights — once a month, no spam.</p>
+      <p class="nl-sub nl">Nieuwe artikelen, formule-updates en op bewijs gebaseerde gezondheidsinzichten — eens per maand, geen spam.</p>
+      <div class="nl-form">
+        <input class="nl-input" type="email" id="nlEmail" placeholder="your@email.com" />
+        <button class="nl-btn" onclick="subscribeNl()"><span class="en">Subscribe</span><span class="nl">Aanmelden</span></button>
+      </div>
+      <div class="nl-note"><span class="en">No spam. Unsubscribe anytime.</span><span class="nl">Geen spam. Altijd afmelden.</span></div>
+    </div>
+  </div>
+
+  <div class="footer-wrap"><footer>
+    <div class="footer-logo">SUPPLEMENTZZ BV</div>
+    <div class="footer-links"><a href="privacy.html"><span class="en">Privacy</span><span class="nl">Privacy</span></a><a href="terms.html"><span class="en">Terms</span><span class="nl">Voorwaarden</span></a><a href="contact.html"><span class="en">Contact</span><span class="nl">Contact</span></a></div>
+    <div class="footer-copy en">© 2026 Supplementzz BV — Fictional demo company</div>
+    <div class="footer-copy nl">© 2026 Supplementzz BV — Fictief demobedrijf</div>
+  </footer></div>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div><div class="cookie-title en">We use cookies to improve your experience</div><div class="cookie-title nl">Wij gebruiken cookies om uw ervaring te verbeteren</div><p class="cookie-body en">Supplementzz BV uses functional and analytical cookies. We do not sell your data.</p><p class="cookie-body nl">Supplementzz BV gebruikt functionele en analytische cookies. Wij verkopen uw gegevens niet.</p></div>
+    <div class="cookie-actions"><button class="cookie-settings" onclick="dismissCookie()"><span class="en">Manage</span><span class="nl">Beheren</span></button><button class="cookie-decline" onclick="dismissCookie()"><span class="en">Decline</span><span class="nl">Weigeren</span></button><button class="cookie-accept" onclick="dismissCookie()"><span class="en">Accept all</span><span class="nl">Alles accepteren</span></button></div>
+  </div>
+</div>
+<script>
+  function setLang(l){document.getElementById('site').className='lang-'+l;document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-nl').classList.toggle('active',l==='nl')}
+  function filterPosts(cat,btn){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.post-card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'flex':'none'});
+    const featured=document.querySelector('.featured-card');
+    if(featured) featured.style.display=(cat==='all'||featured.dataset.cat===cat)?'grid':'none';
+  }
+  function subscribeNl(){
+    const v=document.getElementById('nlEmail').value.trim();
+    if(!v||!v.includes('@')){alert('Please enter a valid email.');return}
+    alert('Thanks for subscribing!');
+    document.getElementById('nlEmail').value='';
+  }
+  function dismissCookie(){const b=document.getElementById('cookieBanner');b.classList.add('hidden');setTimeout(()=>b.style.display='none',400)}
+</script>
+</body>
+</html>

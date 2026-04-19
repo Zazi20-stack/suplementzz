@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Supplementzz BV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--navy:#0a1628;--teal:#0f9b77;--teal-light:#e1f5ee;--teal-mid:#1d9e75;--off-white:#f7f8fa;--text-primary:#0a1628;--text-secondary:#4a5568;--text-muted:#718096;--border:rgba(10,22,40,0.1);--font:'DM Sans',sans-serif;--mono:'DM Mono',monospace}
+    body{font-family:var(--font);background:white;color:var(--text-primary);overflow-x:hidden}
+    .en{display:block}.nl{display:none}.lang-nl .en{display:none}.lang-nl .nl{display:block}
+    span.en{display:inline}span.nl{display:none}.lang-nl span.en{display:none}.lang-nl span.nl{display:inline}
+
+    .trust-bar{background:var(--off-white);border-bottom:0.5px solid var(--border);padding:0 2rem;height:44px;display:flex;align-items:center;justify-content:center}
+    .trust-items{display:flex;align-items:center;gap:2.5rem;max-width:1200px;width:100%;justify-content:center}
+    .trust-item{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;white-space:nowrap}
+    .trust-item svg{width:14px;height:14px;flex-shrink:0}.trust-divider{width:1px;height:16px;background:var(--border)}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-mark{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--navy)}.nav-links a.active{color:var(--navy);font-weight:500}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .lang-switcher{display:flex;gap:2px;background:var(--off-white);border-radius:6px;padding:3px;border:0.5px solid var(--border)}
+    .lang-btn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;padding:4px 10px;border:none;cursor:pointer;border-radius:4px;background:transparent;color:var(--text-muted);transition:all .15s}
+    .lang-btn.active{background:white;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+    .nav-cta{font-size:13px;font-weight:500;padding:8px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+    .nav-cta:hover{background:#1a3360}
+    .breadcrumb{max-width:1200px;margin:0 auto;padding:1.25rem 2rem;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);font-family:var(--mono)}
+    .breadcrumb a{color:var(--text-muted);text-decoration:none}.breadcrumb a:hover{color:var(--navy)}.breadcrumb-sep{opacity:.4}
+
+    /* PAGE HEADER */
+    .page-header{max-width:1200px;margin:0 auto;padding:3rem 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .header-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--teal);text-transform:uppercase;margin-bottom:.75rem}
+    .header-title{font-size:2.5rem;font-weight:300;letter-spacing:-.03em;color:var(--navy);line-height:1.1;margin-bottom:1rem}
+    .header-sub{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.75}
+
+    /* CONTACT CARDS */
+    .contact-cards{display:flex;flex-direction:column;gap:1rem}
+    .contact-card{border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem}
+    .contact-card-icon{width:40px;height:40px;border-radius:10px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+    .contact-card-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.25rem}
+    .contact-card-value{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.2rem}
+    .contact-card-note{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.5}
+
+    /* FORM */
+    .contact-wrap{max-width:1200px;margin:0 auto;padding:0 2rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+    .form-box{background:var(--off-white);border-radius:20px;padding:2rem}
+    .form-title{font-size:16px;font-weight:500;color:var(--navy);margin-bottom:1.5rem}
+    .topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.25rem}
+    .topic-btn{border:0.5px solid var(--border);border-radius:8px;padding:9px 12px;cursor:pointer;font-size:12px;font-weight:400;color:var(--text-secondary);background:white;transition:all .15s;text-align:left}
+    .topic-btn:hover{border-color:var(--navy);color:var(--navy)}
+    .topic-btn.active{border-color:var(--teal);background:var(--teal-light);color:#0f6e56;font-weight:500}
+    .field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+    .field label{font-size:12px;font-weight:400;color:var(--text-secondary)}
+    .field input,.field select,.field textarea{font-family:var(--font);font-size:14px;border:0.5px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--navy);background:white;outline:none;transition:border-color .15s;width:100%}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--navy)}
+    .field textarea{resize:vertical;min-height:120px;line-height:1.6}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn-send{width:100%;padding:14px;background:var(--navy);color:white;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;transition:background .2s,transform .15s;margin-top:.5rem}
+    .btn-send:hover{background:#1a3360;transform:translateY(-1px)}
+
+    /* SUCCESS */
+    .success-msg{display:none;background:var(--teal-light);border:0.5px solid rgba(15,155,119,.2);border-radius:12px;padding:1.25rem;text-align:center;margin-top:1rem}
+    .success-msg.show{display:block}
+    .success-msg p{font-size:14px;color:#0f6e56;font-weight:300;line-height:1.6}
+
+    /* FAQ MINI */
+    .faq-section{background:var(--off-white);border-top:0.5px solid var(--border);padding:4rem 2rem}
+    .faq-inner{max-width:800px;margin:0 auto}
+    .faq-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--teal);text-transform:uppercase;margin-bottom:.75rem;text-align:center}
+    .faq-title{font-size:1.75rem;font-weight:300;color:var(--navy);text-align:center;margin-bottom:2rem}
+    .faq-item{border-bottom:0.5px solid var(--border)}
+    .faq-q{width:100%;text-align:left;background:none;border:none;padding:1.1rem 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:var(--font);font-size:14px;font-weight:500;color:var(--navy);gap:1rem}
+    .faq-icon{font-size:18px;color:var(--text-muted);flex-shrink:0;transition:transform .2s}
+    .faq-item.open .faq-icon{transform:rotate(45deg)}
+    .faq-a{display:none;padding-bottom:1.1rem;font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.75}
+    .faq-item.open .faq-a{display:block}
+
+    .footer-wrap{border-top:0.5px solid var(--border)}
+    footer{max-width:1200px;margin:0 auto;padding:2rem;display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text-muted)}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:12px;color:var(--text-muted);text-decoration:none}
+    .footer-copy{font-size:12px;color:var(--text-muted)}
+    .cookie-banner{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 3rem);max-width:900px;background:white;border:0.5px solid var(--border);border-radius:16px;padding:1.25rem 1.75rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;z-index:999;box-shadow:0 4px 24px rgba(10,22,40,0.08);transition:opacity .3s,transform .3s}
+    .cookie-banner.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+    .cookie-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.35rem}
+    .cookie-body{font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.6}
+    .cookie-actions{display:flex;gap:8px;flex-shrink:0}
+    .cookie-accept{font-size:12px;font-weight:500;padding:9px 18px;background:var(--navy);color:white;border:none;border-radius:8px;cursor:pointer}
+    .cookie-decline{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:0.5px solid var(--border);border-radius:8px;cursor:pointer}
+    .cookie-settings{font-size:12px;padding:9px 14px;background:transparent;color:var(--text-muted);border:none;cursor:pointer;text-decoration:underline}
+    @media(max-width:900px){.page-header,.contact-wrap{grid-template-columns:1fr;gap:2rem}.topic-grid{grid-template-columns:1fr}.field-row{grid-template-columns:1fr}.nav-links{display:none}footer{flex-direction:column;gap:1rem;text-align:center}}
+  </style>
+</head>
+<body>
+<div id="site" class="lang-en">
+
+  <div class="trust-bar"><div class="trust-items">
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#0f9b77" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="en">90-day money-back guarantee</span><span class="nl">90 dagen niet-goed-geld-terug</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v6l3 2" stroke="#718096" stroke-width="1.1" stroke-linecap="round"/><circle cx="7" cy="7" r="6" stroke="#718096" stroke-width="1.1"/></svg><span class="en">Response within 24 hours</span><span class="nl">Reactie binnen 24 uur</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5H13L9.5 7.6 10.8 12 7 9.5 3.2 12 4.5 7.6 1 5H5.2L7 1Z" stroke="#0f9b77" stroke-width="1.1" stroke-linejoin="round"/></svg><span class="en">Dutch quality certified</span><span class="nl">Nederlandse kwaliteit gecertificeerd</span></div>
+  </div></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.2"/><path d="M8 4v8M5 6.5h6M5 9.5h6" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div>SUPPLEMENTZZ</a>
+    <ul class="nav-links">
+      <li><a href="products.html"><span class="en">Products</span><span class="nl">Producten</span></a></li>
+      <li><a href="about.html"><span class="en">About</span><span class="nl">Over ons</span></a></li>
+      <li><a href="blog.html">Blog</a></li><li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="contact.html" class="active"><span class="en">Contact</span><span class="nl">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="cart.html" style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--text-secondary);text-decoration:none;padding:6px 10px;border:0.5px solid var(--border);border-radius:8px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1h2l1.5 7h7l1-5H4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="12" r="1" fill="currentColor"/><circle cx="11" cy="12" r="1" fill="currentColor"/></svg>Cart</a>
+      <div class="lang-switcher"><button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button><button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button></div>
+      <button class="nav-cta" onclick="location.href='products.html'"><span class="en">Shop now</span><span class="nl">Nu winkelen</span></button>
+    </div>
+  </nav>
+
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span style="color:var(--navy)"><span class="en">Contact</span><span class="nl">Contact</span></span></div>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div>
+      <div class="header-tag"><span class="en">Get in touch</span><span class="nl">Neem contact op</span></div>
+      <h1 class="header-title en">We're here<br>to help.</h1>
+      <h1 class="header-title nl">We staan<br>voor u klaar.</h1>
+      <p class="header-sub en">Questions about your order, subscription, ingredients, or anything else — our team responds within one business day.</p>
+      <p class="header-sub nl">Vragen over uw bestelling, abonnement, ingrediënten of iets anders — ons team reageert binnen één werkdag.</p>
+    </div>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div>
+          <div class="contact-card-label"><span class="en">Email</span><span class="nl">E-mail</span></div>
+          <div class="contact-card-value">info@supplementzz.nl</div>
+          <div class="contact-card-note"><span class="en">Response within 1 business day</span><span class="nl">Reactie binnen 1 werkdag</span></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">📦</div>
+        <div>
+          <div class="contact-card-label"><span class="en">Orders &amp; shipping</span><span class="nl">Bestellingen &amp; verzending</span></div>
+          <div class="contact-card-value">orders@supplementzz.nl</div>
+          <div class="contact-card-note"><span class="en">Track, change or cancel your order</span><span class="nl">Volg, wijzig of annuleer uw bestelling</span></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">🏢</div>
+        <div>
+          <div class="contact-card-label"><span class="en">Office</span><span class="nl">Kantoor</span></div>
+          <div class="contact-card-value">Supplementzz BV</div>
+          <div class="contact-card-note">Keizersgracht 123, 1015 CJ Amsterdam<br>KvK: 87654321 · BTW: NL004567891B01</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">⏰</div>
+        <div>
+          <div class="contact-card-label"><span class="en">Support hours</span><span class="nl">Ondersteuningsuren</span></div>
+          <div class="contact-card-value en">Mon–Fri, 09:00–17:00 CET</div>
+          <div class="contact-card-value nl">Ma–Vr, 09:00–17:00 CET</div>
+          <div class="contact-card-note"><span class="en">Closed on Dutch public holidays</span><span class="nl">Gesloten op Nederlandse feestdagen</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM + SIDEBAR -->
+  <div class="contact-wrap">
+    <div class="form-box">
+      <div class="form-title en">Send us a message</div>
+      <div class="form-title nl">Stuur ons een bericht</div>
+
+      <div class="topic-grid">
+        <button class="topic-btn active" onclick="setTopic(this)"><span class="en">📦 Order / shipping</span><span class="nl">📦 Bestelling / verzending</span></button>
+        <button class="topic-btn" onclick="setTopic(this)"><span class="en">🔄 Subscription</span><span class="nl">🔄 Abonnement</span></button>
+        <button class="topic-btn" onclick="setTopic(this)"><span class="en">💊 Product / ingredients</span><span class="nl">💊 Product / ingrediënten</span></button>
+        <button class="topic-btn" onclick="setTopic(this)"><span class="en">💰 Returns &amp; refunds</span><span class="nl">💰 Retour &amp; terugbetaling</span></button>
+        <button class="topic-btn" onclick="setTopic(this)"><span class="en">🤝 Partnership / press</span><span class="nl">🤝 Samenwerking / pers</span></button>
+        <button class="topic-btn" onclick="setTopic(this)"><span class="en">❓ Other</span><span class="nl">❓ Anders</span></button>
+      </div>
+
+      <div class="field-row">
+        <div class="field"><label><span class="en">First name</span><span class="nl">Voornaam</span></label><input type="text" id="cFirstName" placeholder="Jan" /></div>
+        <div class="field"><label><span class="en">Last name</span><span class="nl">Achternaam</span></label><input type="text" id="cLastName" placeholder="de Vries" /></div>
+      </div>
+      <div class="field"><label><span class="en">Email address</span><span class="nl">E-mailadres</span></label><input type="email" id="cEmail" placeholder="jan@email.com" /></div>
+      <div class="field"><label><span class="en">Order number (optional)</span><span class="nl">Bestelnummer (optioneel)</span></label><input type="text" id="cOrder" placeholder="SUP-2025-XXXXX" /></div>
+      <div class="field"><label><span class="en">Message</span><span class="nl">Bericht</span></label><textarea id="cMessage" placeholder="How can we help?"></textarea></div>
+
+      <button class="btn-send" onclick="sendMessage()"><span class="en">Send message</span><span class="nl">Bericht versturen</span></button>
+
+      <div class="success-msg" id="successMsg">
+        <p class="en">✓ Message sent. We'll get back to you within one business day.</p>
+        <p class="nl">✓ Bericht verzonden. We reageren binnen één werkdag.</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR INFO -->
+    <div>
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem"><span class="en">Good to know</span><span class="nl">Goed om te weten</span></div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div style="border:0.5px solid var(--border);border-radius:14px;padding:1.25rem">
+          <div style="font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.4rem"><span class="en">90-day guarantee</span><span class="nl">90 dagen garantie</span></div>
+          <p style="font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.65"><span class="en">If you're not satisfied after 90 days of consistent use, we'll refund your last order in full — no questions asked. Simply email orders@supplementzz.nl with your order number.</span><span class="nl">Als u niet tevreden bent na 90 dagen consistent gebruik, restitueren we uw laatste bestelling volledig — geen vragen gesteld. Stuur een e-mail naar orders@supplementzz.nl met uw bestelnummer.</span></p>
+        </div>
+        <div style="border:0.5px solid var(--border);border-radius:14px;padding:1.25rem">
+          <div style="font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.4rem"><span class="en">Manage your subscription</span><span class="nl">Abonnement beheren</span></div>
+          <p style="font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.65"><span class="en">You can pause, change, or cancel your subscription at any time by emailing us or logging into your account. No notice period. No cancellation fees.</span><span class="nl">U kunt uw abonnement op elk moment pauzeren, wijzigen of opzeggen door ons te e-mailen of in te loggen op uw account. Geen opzegtermijn. Geen annuleringskosten.</span></p>
+        </div>
+        <div style="border:0.5px solid var(--border);border-radius:14px;padding:1.25rem">
+          <div style="font-size:14px;font-weight:500;color:var(--navy);margin-bottom:.4rem"><span class="en">Medical questions</span><span class="nl">Medische vragen</span></div>
+          <p style="font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.65"><span class="en">We cannot provide personalised medical advice. If you have questions about supplement interactions with medication or a health condition, please consult your GP or pharmacist.</span><span class="nl">We kunnen geen persoonlijk medisch advies geven. Als u vragen heeft over supplementeninteracties met medicatie of een gezondheidstoestand, raadpleeg dan uw huisarts of apotheker.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MINI FAQ -->
+  <div class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-tag"><span class="en">Quick answers</span><span class="nl">Snelle antwoorden</span></div>
+      <h2 class="faq-title en">Frequently asked questions</h2>
+      <h2 class="faq-title nl">Veelgestelde vragen</h2>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)"><span class="en">When will my order arrive?</span><span class="nl">Wanneer komt mijn bestelling aan?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a en">Orders are processed within 1 business day. Domestic (Netherlands) delivery takes 2–3 business days. EU delivery takes 3–7 business days. You'll receive a tracking link by email once your order ships.</div>
+        <div class="faq-a nl">Bestellingen worden verwerkt binnen 1 werkdag. Binnenlandse (Nederland) levering duurt 2–3 werkdagen. EU-levering duurt 3–7 werkdagen. U ontvangt een trackinglink per e-mail zodra uw bestelling is verzonden.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)"><span class="en">How do I cancel my subscription?</span><span class="nl">Hoe zeg ik mijn abonnement op?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a en">Email orders@supplementzz.nl with your order number and we'll cancel within 24 hours. You can also cancel via your account dashboard. There is no notice period or cancellation fee.</div>
+        <div class="faq-a nl">Stuur een e-mail naar orders@supplementzz.nl met uw bestelnummer en we annuleren binnen 24 uur. U kunt ook annuleren via uw accountdashboard. Er is geen opzegtermijn of annuleringskosten.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)"><span class="en">Can I take multiple Supplementzz products together?</span><span class="nl">Kan ik meerdere Supplementzz-producten tegelijk innemen?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a en">Yes. Our three formulas are designed to complement each other. Overlapping micronutrients (zinc, vitamin D3, magnesium) are dosed conservatively so combining products remains within safe intake levels. If you take prescription medication, consult your GP first.</div>
+        <div class="faq-a nl">Ja. Onze drie formules zijn ontworpen om elkaar aan te vullen. Overlappende micronutriënten (zink, vitamine D3, magnesium) zijn conservatief gedoseerd zodat het combineren van producten binnen veilige innamedoseringen blijft.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)"><span class="en">Are your products suitable for vegans?</span><span class="nl">Zijn uw producten geschikt voor veganisten?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a en">Yes. All three formulas use plant-based capsule shells (HPMC) and contain no animal-derived ingredients. They are also gluten-free and free from artificial colours and preservatives.</div>
+        <div class="faq-a nl">Ja. Alle drie de formules gebruiken plantaardige capsuleschilden (HPMC) en bevatten geen ingrediënten van dierlijke oorsprong. Ze zijn ook glutenvrij en vrij van kunstmatige kleurstoffen en conserveermiddelen.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)"><span class="en">Where are your supplements manufactured?</span><span class="nl">Waar worden uw supplementen geproduceerd?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a en">All formulas are manufactured in the Netherlands under GMP (Good Manufacturing Practice) certification. Ingredients are sourced from certified international suppliers and tested on arrival for purity and potency.</div>
+        <div class="faq-a nl">Alle formules worden geproduceerd in Nederland onder GMP-certificering (Good Manufacturing Practice). Ingrediënten worden betrokken van gecertificeerde internationale leveranciers en bij ontvangst getest op zuiverheid en potentie.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-wrap"><footer>
+    <div class="footer-logo">SUPPLEMENTZZ BV</div>
+    <div class="footer-links"><a href="privacy.html"><span class="en">Privacy</span><span class="nl">Privacy</span></a><a href="terms.html"><span class="en">Terms</span><span class="nl">Voorwaarden</span></a><a href="contact.html"><span class="en">Contact</span><span class="nl">Contact</span></a></div>
+    <div class="footer-copy en">© 2026 Supplementzz BV — Fictional demo company</div>
+    <div class="footer-copy nl">© 2026 Supplementzz BV — Fictief demobedrijf</div>
+  </footer></div>
+
+  <!-- CHATBOT -->
+  <div id="chatBtn" onclick="toggleChat()" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:998;width:52px;height:52px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(10,22,40,0.2);transition:transform .2s" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+    <svg id="chatIcon" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 4h16a1 1 0 011 1v10a1 1 0 01-1 1H7l-4 3V5a1 1 0 011-1z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/></svg>
+    <svg id="closeIcon" width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:none"><path d="M4 4l10 10M14 4L4 14" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </div>
+
+  <div id="chatWindow" style="display:none;position:fixed;bottom:5.5rem;right:1.5rem;z-index:997;width:360px;max-height:520px;background:white;border:0.5px solid var(--border);border-radius:20px;box-shadow:0 8px 40px rgba(10,22,40,0.12);display:none;flex-direction:column;overflow:hidden">
+    <!-- Header -->
+    <div style="background:var(--navy);padding:1rem 1.25rem;display:flex;align-items:center;gap:10px">
+      <div style="width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px">🤖</div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:white">Supplementzz Assistant</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);font-family:var(--mono)"><span class="en">Powered by AI · Not medical advice</span><span class="nl">Aangedreven door AI · Geen medisch advies</span></div>
+      </div>
+    </div>
+    <!-- Messages -->
+    <div id="chatMessages" style="flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;max-height:340px">
+      <div class="msg bot"><span class="en">Hi! I'm the Supplementzz assistant. Ask me anything about our products, ingredients, subscriptions, or orders.</span><span class="nl">Hallo! Ik ben de Supplementzz-assistent. Stel me gerust vragen over onze producten, ingrediënten, abonnementen of bestellingen.</span></div>
+    </div>
+    <!-- Input -->
+    <div style="border-top:0.5px solid var(--border);padding:.875rem;display:flex;gap:8px;align-items:center">
+      <input id="chatInput" type="text" placeholder="Ask a question..." style="flex:1;font-family:var(--font);font-size:13px;border:0.5px solid var(--border);border-radius:8px;padding:8px 12px;outline:none;color:var(--navy)" onkeydown="if(event.key==='Enter')sendChat()" />
+      <button onclick="sendChat()" style="width:34px;height:34px;background:var(--navy);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 3l5 4-5 4" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <style>
+    .msg{font-size:13px;line-height:1.6;padding:.625rem .875rem;border-radius:12px;max-width:88%}
+    .msg.bot{background:var(--off-white);color:var(--text-primary);align-self:flex-start;border-bottom-left-radius:4px}
+    .msg.user{background:var(--navy);color:white;align-self:flex-end;border-bottom-right-radius:4px}
+    .msg.typing{color:var(--text-muted);font-style:italic}
+    #chatWindow.open{display:flex!important}
+  </style>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div><div class="cookie-title en">We use cookies to improve your experience</div><div class="cookie-title nl">Wij gebruiken cookies om uw ervaring te verbeteren</div><p class="cookie-body en">Supplementzz BV uses functional and analytical cookies. We do not sell your data.</p><p class="cookie-body nl">Supplementzz BV gebruikt functionele en analytische cookies. Wij verkopen uw gegevens niet.</p></div>
+    <div class="cookie-actions"><button class="cookie-settings" onclick="dismissCookie()"><span class="en">Manage</span><span class="nl">Beheren</span></button><button class="cookie-decline" onclick="dismissCookie()"><span class="en">Decline</span><span class="nl">Weigeren</span></button><button class="cookie-accept" onclick="dismissCookie()"><span class="en">Accept all</span><span class="nl">Alles accepteren</span></button></div>
+  </div>
+</div>
+<script>
+  function toggleChat(){
+    const w=document.getElementById('chatWindow');
+    const open=w.classList.contains('open');
+    w.classList.toggle('open');
+    document.getElementById('chatIcon').style.display=open?'block':'none';
+    document.getElementById('closeIcon').style.display=open?'none':'block';
+    if(!open) document.getElementById('chatInput').focus();
+  }
+
+  const SYSTEM_PROMPT = `You are the Supplementzz BV customer assistant. Be helpful, concise, and honest. Only answer questions about Supplementzz BV products, ingredients, orders, subscriptions, shipping, and returns. If asked about medical advice, always say to consult a GP. Never claim to be human.
+
+Key facts:
+- Products: HairMax Formula (€49/mo, teal), VigorCore Complex (€54/mo, blue), BalanceHer Blend (€52/mo, pink)
+- All have 1/3/6/12 month plans. Yearly plan saves 33%.
+- 90-day money-back guarantee. Free shipping from €75. Cancel anytime.
+- Made in Netherlands. Patented formulas (NL2031847, NL2031848, NL2031849).
+- HairMax: Biotin 5000mcg, Saw Palmetto 320mg, L-Cysteine 500mg, Zinc 15mg, Horsetail 150mg, Vitamin D3 1000IU
+- VigorCore: Ashwagandha KSM-66 600mg, Fenugreek 500mg, Zinc 20mg, Vitamin D3 2000IU, Magnesium 300mg, Panax Ginseng 200mg
+- BalanceHer: Vitex 400mg, Maca 1500mg, Evening Primrose 1000mg, Magnesium 250mg, B6 50mg, Methylfolate 400mcg
+- Support: info@supplementzz.nl, orders@supplementzz.nl. Response within 1 business day.
+- All products vegan, gluten-free, no artificial colours.
+- Not a medicine. Does not treat, cure or prevent any condition.`;
+
+  const chatHistory = [];
+
+  async function sendChat(){
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if(!msg) return;
+    input.value = '';
+
+    addMsg(msg, 'user');
+    chatHistory.push({role:'user', content: msg});
+
+    const typing = addMsg('Typing...', 'bot typing');
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 400,
+          system: SYSTEM_PROMPT,
+          messages: chatHistory
+        })
+      });
+      const data = await res.json();
+      const reply = data.content?.[0]?.text || 'Sorry, something went wrong. Please try again.';
+      typing.remove();
+      addMsg(reply, 'bot');
+      chatHistory.push({role:'assistant', content: reply});
+    } catch(e) {
+      typing.remove();
+      addMsg('Something went wrong. Please email info@supplementzz.nl directly.', 'bot');
+    }
+  }
+
+  function addMsg(text, type){
+    const el = document.createElement('div');
+    el.className = 'msg ' + type;
+    el.textContent = text;
+    const container = document.getElementById('chatMessages');
+    container.appendChild(el);
+    container.scrollTop = container.scrollHeight;
+    return el;
+  }
+
+  function setLang(l){document.getElementById('site').className='lang-'+l;document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-nl').classList.toggle('active',l==='nl')}
+  function setTopic(el){document.querySelectorAll('.topic-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
+  function sendMessage(){
+    const name=document.getElementById('cFirstName').value.trim();
+    const email=document.getElementById('cEmail').value.trim();
+    const msg=document.getElementById('cMessage').value.trim();
+    if(!name||!email||!msg){alert('Please fill in your name, email and message.');return}
+    document.getElementById('successMsg').classList.add('show');
+    document.querySelector('.btn-send').disabled=true;
+  }
+  function toggleFaq(btn){
+    const item=btn.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  }
+  function dismissCookie(){const b=document.getElementById('cookieBanner');b.classList.add('hidden');setTimeout(()=>b.style.display='none',400)}
+</script>
+</body>
+</html>
